@@ -7,6 +7,7 @@ use LDFx\ItsToxicGG\LDCommand\SettingsCommand;
 use LDFx\ItsToxicGG\LDCommand\FlyCommand;
 use LDFx\ItsToxicGG\LDCommand\NickColorCommand;
 use LDFx\ItsToxicGG\LDCommand\GUICommand;
+use LDFx\ItsToxicGG\LDCommand\SocialMenuCommand;
 // POCKETMINE
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
@@ -51,6 +52,7 @@ class LDFx extends PluginBase implements Listener
       $this->getServer()->getCommandMap()->register("fly", new FlyCommand($this));
       $this->getServer()->getCommandMap()->register("nickcolor", new NickColorCommand($this));
       $this->getServer()->getCommandMap()->register("games", new GUICommand($this));
+      $this->getServer()->getCommandMap()->register("socialmenu", new SocialMenuCommand($this));
   }
   
   public function onDiable(): void{
@@ -69,12 +71,12 @@ class LDFx extends PluginBase implements Listener
                 break;
             
                 case 1:
-                    $player->sendMessage("§aYou Have Left The Form!");
+	            $this->NickColorForm($player);
+	            $player->sendMessage("§aYou Have Left the Settings to NickColorForm!");
                 break;
 			    
 		case 2:
-	            $this->NickColorForm($player);
-	            $player->sendMessage("§aYou Have Left the Settings to NickColorForm!");
+	            $player->sendMessage("§aYou Have Left the Form!");
 	        break;
             
             }
@@ -231,7 +233,7 @@ class LDFx extends PluginBase implements Listener
        });
        $form->setTitle("§dSocial Menu");
        $form->setContent("§fChoose the minigame you wanna play!");
-       $form->addButton("§9Paties");
+       $form->addButton("§9Parties");
        $form->addButton("§aSettings");
        $form->addButton("§cEXIT");
        $form->sendToPlayer($player);
