@@ -1,7 +1,7 @@
 # LDFx
 LDFx is the ultimate essentials plugin for PM4!
 # Does it work?
-Ive tested myself and the commands + permissions are working good!
+As it everything on the todo & implemented list is work
 # Todo & Implemented
 - [ ] NickName Support
 - [X] NickName Color Support
