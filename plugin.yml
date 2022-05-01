@@ -1,8 +1,8 @@
 name: LDFx
-version: 1.4
+version: 5.0 # the version im predicting to be when pm5 comes out
 main: LDFx\ItsToxicGG\LDFx
 author: ItsToxicGG
-api: 4.0.0
+api: 5.0.0
 
 permissions:
   settings.fx:
