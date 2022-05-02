@@ -14,6 +14,15 @@
   worlds:
   - "world"
 # EndOfFlyConfig
+# Ping-Config
+  tps-check: 20
+
+  #Choose the ping of when a player should be kicked, (I recommend you put it above 2000)
+  ping-kick: 1000
+
+  #Choose the kick message when a player is kicked for exceeding the ping limit
+  kick-message: "§7You were kicked, this was caused by high ping!"
+# EndOfPing-Config
 # LobbyCore-Config
   #Items 1 | Compass
   item1-name: "§r§cReport Player" # Name Items
