@@ -13,6 +13,8 @@ use LDFx\ItsToxicGG\LDTask\HPingTask;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
 use pocketmine\entity\Entity;
+use pocketmine\event\entity\ProjectileHitEntityEvent;
+use pocketmine\entity\projectile\Arrow;
 use pocketmine\event\entity\EntityTeleportEvent;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
@@ -42,13 +44,25 @@ use Vecnavium\FormsUI\SimpleForm;
 
 class LDFx extends PluginBase implements Listener
 {
-  
+	
+  /** @var string[] */
+  private $enabledWorlds = [];
+
+  /** @var string[] */
+  private $disabledWorlds = [];
+
+  /** @var bool */
+  private $useDefaultWorld = false;
+ 
   public function onEnable(): void{
       $this->getLogger()->info("§aEnabled LDFx");
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
       $this->BetterPearl();
       @mkdir($this->getDataFolder());
       $this->saveDefaultConfig();
+      $this->enabledWorlds = $this->getConfig()->get("enabled-worlds");
+      $this->disabledWorlds = $this->getConfig()->get("disabled-worlds");
+      $this->useDefaultWorld = $this->getConfig()->get("use-default-world");	  
       $this->getScheduler()->scheduleRepeatingTask(new HPingTask($this), 20);
       $this->getServer()->getCommandMap()->register("settings", new SettingsCommand($this));
       $this->getServer()->getCommandMap()->register("fly", new FlyCommand($this));
@@ -318,7 +332,77 @@ class LDFx extends PluginBase implements Listener
 		$damager->setSprinting(false);
 	}
   }
+	
+  public function onDamage(EntityDamageEvent $event) : void{
+	$entity = $event->getEntity();
+	if(!$entity instanceof Player){
+		return;
+	}
+	if($event->getCause() === EntityDamageEvent::CAUSE_VOID){
+		if($this->saveFromVoidAllowed($entity->getWorld())){
+			$this->savePlayerFromVoid($entity);
+			$event->cancel();
+		}
+	}
+  }
+	
+  private function saveFromVoidAllowed(World $world) : bool {
+	if(empty($this->enabledWorlds) and empty($this->disabledWorlds)){
+		return true;
+	}
+	$levelFolderName = $world->getFolderName();
 
+	if(in_array($levelFolderName, $this->disabledWorlds)){
+			return false;
+	}
+	if(in_array($levelFolderName, $this->enabledWorlds)){
+		return true;
+	}
+	if(!empty($this->enabledWorlds) and !in_array($levelFolderName, $this->enabledWorlds)){
+		return false;
+	}
+
+	return true;
+  }
+
+  private function savePlayerFromVoid(Player $player) : void{
+	if($this->useDefaultWorld){
+		$position = $player->getServer()->getWorldManager()->getDefaultWorld()->getSpawnLocation();
+	} else {
+		$position = $player->getWorld()->getSpawnLocation();
+	}
+	$player->teleport($position);
+  }
+	
+  public function onProjectileHit(ProjectileHitEvent $event){
+	$player = $event->getEntity()->getOwningEntity();
+	if(!$event->getEntity() instanceof Arrow) return;
+	if($player instanceof Player && $event instanceof ProjectileHitEntityEvent) {
+		$target = $event->getEntityHit();
+		if($target instanceof Player) {
+			if($this->config->get("enable-sound", true)) {
+				$pk = new PlaySoundPacket();
+				$pk->x = $player->getPosition()->getX();
+				$pk->y = $player->getPosition()->getY();
+				$pk->z = $player->getPosition()->getZ();
+				$pk->volume = $this->config->get("sound-volume");
+				$pk->pitch = $this->config->get("sound-pitch");
+				$pk->soundName = $this->config->get("sound-name");
+				$player->getNetworkSession()->sendDataPacket($pk);
+			}
+			if($this->config->get("enable-message", true)) {
+			    $player->sendMessage(str_replace(["{hp}", "{damage}", "{name}", "{display}"], [$target->getHealth(), $event->getEntity()->getResultDamage(), $target->getName(), $target->getDisplayName()], $this->config->get("hit-message")));
+			}
+			if($this->config->get("enable-popup", true)) {
+			    $player->sendPopup(str_replace(["{hp}", "{damage}", "{name}", "{display}"], [$target->getHealth(), $event->getEntity()->getResultDamage(), $target->getName(), $target->getDisplayName()], $this->config->get("hit-popup")));
+			}
+			if($this->config->get("enable-tip", true)) {
+			    $player->sendTip(str_replace(["{hp}", "{damage}", "{name}", "{display}"], [$target->getHealth(), $event->getEntity()->getResultDamage(), $target->getName(), $target->getDisplayName()], $this->config->get("hit-tip")));
+			}
+		}
+	}
+  }	
+	
   public function BetterPearl(){
        $this->getServer()->getPluginManager()->registerEvent(ProjectileHitEvent::class, static function (ProjectileHitEvent $event) : void{
            $projectile = $event->getEntity();
