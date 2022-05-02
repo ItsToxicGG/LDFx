@@ -12,7 +12,7 @@ use pocketmine\plugin\PluginOwned;
 
 use LDFx\ItsToxicGG\LDFx;
 
-class FlyCommand extends Command implements PluginOwned{
+class NickNameCommand extends Command implements PluginOwned{
     
     private $plugin;
 
@@ -27,7 +27,7 @@ class FlyCommand extends Command implements PluginOwned{
     public function execute(CommandSender $sender, string $commandLabel, array $args){
         if(count($args) == 0){
             if($sender instanceof Player) {
-                $this->plugin->FlyForm($sender);
+                $this->plugin->NickForm($sender);
             } else {
                 $sender->sendMessage("Use this command in-game");
             }
