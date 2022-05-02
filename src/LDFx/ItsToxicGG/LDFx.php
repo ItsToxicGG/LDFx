@@ -40,6 +40,7 @@ use pocketmine\command\CommandExecutor;
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\inventory\InventoryTransactionEvent;
+use pocketmine\utils\Config;
 // FORM
 use Vecnavium\FormsUI\CustomForm;
 use Vecnavium\FormsUI\SimpleForm;
