@@ -296,8 +296,8 @@ class LDFx extends PluginBase implements Listener
 
   public function onLevelChange(EntityTeleportEvent $event) : void{
 	$entity = $event->getEntity();
-        $player->getInventory()->clearAll();
-        $player->getArmorInventory()->clearAll();
+        $entity->getInventory()->clearAll();
+        $entity->getArmorInventory()->clearAll();
 	if($entity instanceof Player) $this->FlyMWCheck($entity);
   }
  	
