@@ -298,7 +298,17 @@ class LDFx extends PluginBase implements Listener
 	$entity = $event->getEntity();
 	if($entity instanceof Player) $this->FlyMWCheck($entity);
   }
- 	
+	
+  public function onChange(EntityTeleportEvent $event) : void{
+       	$entity = $event->getEntity();
+	if($entity instanceof Player) $this->clear($entity);
+  }
+	
+  public function clear($player){
+      $player->getInventory()->clearAll();
+      $player->getArmorInventory()->clearAll();
+  }
+	
   public function onEntityDamageEventByEntity(EntityDamageByEntityEvent $event): void{
 	$damager = $event->getDamager();
 	if(!$event instanceof EntityDamageByChildEntityEvent and $damager instanceof Living and $damager->isSprinting()){
