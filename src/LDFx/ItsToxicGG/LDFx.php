@@ -227,25 +227,20 @@ class LDFx extends PluginBase implements Listener
                         
 			    case 2;
 			        if(!$this->nick->exists($player->getName())){
-				$player->sendMessage($this->config->get("Prefix") . $this->config->get("Nick-Existen"));
-				PluginUtils::PlaySound($player, "mob.villager.no", 1, 1);
-				return true;
+				     $player->sendMessage($this->config->get("Prefix") . $this->config->get("Nick-Existen"));
+				     PluginUtils::PlaySound($player, "mob.villager.no", 1, 1);
+				     return true;
 		                }
 			        if($this->nick->exists($player->getName())){
-				$player->setNameTag($this->nick->getNested($player->getName() . ".normal-name"));
-				$player->setDisplayName($this->nick->getNested($player->getName() . ".normal-name"));
-				$this->nick->remove($player->getName());
-				$this->nick->save();
-			        $player->sendMessage($this->config->get("Prefix") . $this->config->get("Nick-Normal"));
-				PluginUtils::PlaySound($player, "random.pop", 1, 1);
-				return true;
+				    $player->setNameTag($this->nick->getNested($player->getName() . ".normal-name"));
+				    $player->setDisplayName($this->nick->getNested($player->getName() . ".normal-name"));
+				    $this->nick->remove($player->getName());
+				    $this->nick->save();
+			            $player->sendMessage($this->config->get("Prefix") . $this->config->get("Nick-Normal"));
+				    PluginUtils::PlaySound($player, "random.pop", 1, 1);
+				   return true;
 				}
-				break;
-
-			 /**case 3:
-				 $this->HideForm($player);
-				PluginUtils::PlaySound($player, "random.pop", 1, 1);
-				break; */
+			    break;
 
 			    case 3:
 				 PluginUtils::PlaySound($player, "random.pop2", 1, 3);
