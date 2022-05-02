@@ -23,6 +23,21 @@
   #Choose the kick message when a player is kicked for exceeding the ping limit
   kick-message: "§7You were kicked, this was caused by high ping!"
 # EndOfPing-Config
+# Bow-Config
+enable-sound: true # Enable sound ?
+sound-volume: 1
+sound-pitch: 1
+sound-name: "random.orb"
+
+enable-message: true # Enable message ?
+hit-message: "§c{name} §7(§aHP: §e{hp}§7)"
+
+enable-popup: false  # Enable popup ?
+hit-popup: "§c{name} §7(§aHP: §e{hp}§7)"
+
+enable-tip: false  # Enable tip ?
+hit-tip: "§c{name} §7(§aHP: §e{hp}§7)"
+# EndOfBow-Config
 # LobbyCore-Config
   #Items 1 | Compass
   item1-name: "§r§cReport Player" # Name Items
