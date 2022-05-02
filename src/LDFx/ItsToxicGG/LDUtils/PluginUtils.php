@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace fernanACM\NickUI\Utils;
+namespace LDFx\ItsToxicGG\LDUtils;
 
 use pocketmine\player\Player;
 use pocketmine\Server;
