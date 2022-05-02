@@ -1,16 +1,16 @@
 <?php
 
-namespace ItsToxicGG\LDTask\Task;
+namespace ItsToxicGG\LDTask;
 
 use LDFx\ItsToxicGG\LDFx;
 use pocketmine\scheduler\Task;
 
 class HPingTask extends Task {
 
-    private Main $plugin;
+    private LDFx $plugin;
 
-    public function __construct(Main $main) {
-        $this->plugin = $main;
+    public function __construct(LDFx $LDFx) {
+        $this->plugin = $LDFx;
     }
 
     public function onRun() : void {
