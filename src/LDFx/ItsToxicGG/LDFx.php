@@ -212,7 +212,7 @@ class LDFx extends PluginBase implements Listener
 	
   public function NickForm(Player $player){
 	$form = new SimpleForm(function (Player $player, $data){
-			if ($data !== null) {
+			if ($data === null) {
 			switch($data){
 			    case 0;
                                 $this->NickPlayer($player);
