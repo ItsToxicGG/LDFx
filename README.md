@@ -14,7 +14,9 @@ As it everything on the todo & implemented list is work
 - [X] Pay-Pal Link
 - [X] CustomKnockBack
 - [X] LobbyCore
-- [ ] HealthTag
+- [X] BetterBow (like hypixel)
+- [X] AntiVoid
+- [X] HighPinkKick 
 - [ ] DataBase
 - [X] BetterPearl
 - Note : I will add much more features! 1 donation = 1 - 3 new features that will be added asking by the donation (not everything from a donater will be added!)
