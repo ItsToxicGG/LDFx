@@ -22,6 +22,7 @@ use pocketmine\event\entity\EntityDamageByChildEntityEvent;
 use pocketmine\event\Listener;
 use pocketmine\utils\TextFormat;
 use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\player\Player;
 use pocketmine\event\EventPriority;
 use pocketmine\event\entity\ProjectileHitEvent;
@@ -60,6 +61,8 @@ class LDFx extends PluginBase implements Listener
       $this->BetterPearl();
       @mkdir($this->getDataFolder());
       $this->saveDefaultConfig();
+      $this->nick = new Config($this->getDataFolder() . "nicks.yml", Config::YAML);
+      $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML);
       $this->enabledWorlds = $this->getConfig()->get("enabled-worlds");
       $this->disabledWorlds = $this->getConfig()->get("disabled-worlds");
       $this->useDefaultWorld = $this->getConfig()->get("use-default-world");	  
@@ -239,7 +242,7 @@ class LDFx extends PluginBase implements Listener
 	            }
 		}
 		});
-		$form->setTitle("§d§lNickUI");
+		$form->setTitle("§d§lNickNames");
 		if($this->nick->exists($player->getName())){
 		$form->setContent($this->config->get("Nick-Content") . $this->nick->getNested($player->getName() . ".custom-name"));
 		}
@@ -278,6 +281,16 @@ class LDFx extends PluginBase implements Listener
 		$form->setTitle("§l§dNick - Change");
 		$form->addInput($this->config->get("Input"));
 		$player->sendForm($form);
+  }
+	
+  public function randomNick(Player $player){
+        $zahl = mt_rand(0, count($this->config->get("Random-nicks")) -1 );
+        $this->nick->setNested($player->getName() . ".custom-name", $this->config->get("Random-nicks")[$zahl]);
+		$this->nick->setNested($player->getName() . ".normal-name", $player->getName());
+        $player->setDisplayName($this->config->get("Random-nicks")[$zahl]);
+        $player->setNameTag($this->config->get("Random-nicks")[$zahl]);
+        $message = $this->config->get("Nick-New");
+        $player->sendMessage($this->config->get("Prefix") . str_replace("{NICK}", $this->config->get("Random-nicks")[$zahl], $message));
   }
 	
   public function GUI($player){
@@ -362,6 +375,11 @@ class LDFx extends PluginBase implements Listener
 		if($player->isCreative()) return;
 		$player->setAllowFlight(false);
 		$player->sendMessage($this->getConfig()->get("FDMessage"));
+		$name = $player->getName();
+		$player->setDisplayName($name);
+		$player->setNameTag($name);
+                $this->nick->remove($name);
+		$this->nick->save();
 	}
 	  
         $player = $event->getPlayer();
@@ -374,7 +392,7 @@ class LDFx extends PluginBase implements Listener
         $item3->setCustomName($this->getConfig()->get("item3-name"));
         $player->getInventory()->setItem(0, $item1);
         $player->getInventory()->setItem(4, $item2);
-        $player->getInventory()->setItem(8, $item3);	  
+        $player->getInventory()->setItem(8, $item3);
   }
 	
   public function onClick(PlayerInteractEvent $event){
