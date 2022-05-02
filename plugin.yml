@@ -1,5 +1,5 @@
 name: LDFx
-version: 2.0-InDev
+version: 2.0
 main: LDFx\ItsToxicGG\LDFx
 author: ItsToxicGG
 api: 4.0.0
@@ -13,4 +13,7 @@ permissions:
     default: op   
   nickcolor.fx:
     description: /nickcolor
+    default: op
+  nicknames.fx:
+    description: /nickname
     default: op
