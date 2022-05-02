@@ -8,6 +8,7 @@ use LDFx\ItsToxicGG\LDCommand\FlyCommand;
 use LDFx\ItsToxicGG\LDCommand\NickColorCommand;
 use LDFx\ItsToxicGG\LDCommand\GUICommand;
 use LDFx\ItsToxicGG\LDCommand\SocialMenuCommand;
+use LDFx\ItsToxicGG\LDTask\HPingTask;
 // POCKETMINE
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
@@ -48,6 +49,7 @@ class LDFx extends PluginBase implements Listener
       $this->BetterPearl();
       @mkdir($this->getDataFolder());
       $this->saveDefaultConfig();
+      $this->getScheduler()->scheduleRepeatingTask(new HPingTask($this), 20);
       $this->getServer()->getCommandMap()->register("settings", new SettingsCommand($this));
       $this->getServer()->getCommandMap()->register("fly", new FlyCommand($this));
       $this->getServer()->getCommandMap()->register("nickcolor", new NickColorCommand($this));
