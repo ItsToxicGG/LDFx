@@ -48,6 +48,9 @@ use Vecnavium\FormsUI\SimpleForm;
 class LDFx extends PluginBase implements Listener
 {
 	
+  private $nick;
+  private $config;	
+	
   /** @var string[] */
   private $enabledWorlds = [];
 
