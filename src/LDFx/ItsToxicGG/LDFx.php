@@ -212,48 +212,43 @@ class LDFx extends PluginBase implements Listener
   }
 	
   public function NickForm(Player $player){
-		$form = new SimpleForm(function (Player $player, $data){
-				if ($data !== null) {
-				switch($data){
-					case 0;
-                        $this->NickPlayer($player);
-					    PluginUtils::PlaySound($player, "random.pop", 1, 1);
-					break;
+	$form = new SimpleForm(function (Player $player, $data){
+	    if ($data !== null) {
+		 switch($data){
+		     case 0;
+                         $this->NickPlayer($player);
+			 PluginUtils::PlaySound($player, "random.pop", 1, 1);
+		     break;
                         
-                    case 1:
-                        $this->randomNick($player);
-                        PluginUtils::PlaySound($player, "random.pop", 1, 1);
-                    break;
+                     case 1:
+                         $this->randomNick($player);
+                         PluginUtils::PlaySound($player, "random.pop", 1, 1);
+                     break;
                         
-					case 2;
-					    if(!$this->nick->exists($player->getName())){
-						    $player->sendMessage($this->config->get("Prefix") . $this->config->get("Nick-Existen"));
-						    PluginUtils::PlaySound($player, "mob.villager.no", 1, 1);
-						    return true;
-					    }
-					    if($this->nick->exists($player->getName())){
-						   $player->setNameTag($this->nick->getNested($player->getName() . ".normal-name"));
-						   $player->setDisplayName($this->nick->getNested($player->getName() . ".normal-name"));
-						   $this->nick->remove($player->getName());
-						   $this->nick->save();
-						   $player->sendMessage($this->config->get("Prefix") . $this->config->get("Nick-Normal"));
-						   PluginUtils::PlaySound($player, "random.pop", 1, 1);
-						   return true;
-					    }
-					break;
+		     case 2;
+			 if(!$this->nick->exists($player->getName())){
+			      $player->sendMessage($this->config->get("Prefix") . $this->config->get("Nick-Existen"));
+			      PluginUtils::PlaySound($player, "mob.villager.no", 1, 1);
+			      return true;
+		         }
+		         if($this->nick->exists($player->getName())){
+			      $player->setNameTag($this->nick->getNested($player->getName() . ".normal-name"));
+			      $player->setDisplayName($this->nick->getNested($player->getName() . ".normal-name"));
+			      $this->nick->remove($player->getName());
+			      $this->nick->save();
+			      $player->sendMessage($this->config->get("Prefix") . $this->config->get("Nick-Normal"));
+			      PluginUtils::PlaySound($player, "random.pop", 1, 1);
+			      return true;
+		         }
+		    break;
 
-					/**case 3:
-					    $this->HideForm($player);
-					    PluginUtils::PlaySound($player, "random.pop", 1, 1);
-					break; */
-
-					case 3:
-					    PluginUtils::PlaySound($player, "random.pop2", 1, 3);
-					break;
+		    case 3:
+			PluginUtils::PlaySound($player, "random.pop2", 1, 3);
+		    break;
 				    }
 				}
 			});
-			$form->setTitle("§d§lNickUI");
+			$form->setTitle("§d§lNickNames");
 			if($this->nick->exists($player->getName())){
 			$form->setContent($this->config->get("Nick-Content") . $this->nick->getNested($player->getName() . ".custom-name"));
 			}
@@ -271,7 +266,7 @@ class LDFx extends PluginBase implements Listener
   public function randomNick(Player $player){
         $zahl = mt_rand(0, count($this->config->get("Random-nicks")) -1 );
         $this->nick->setNested($player->getName() . ".custom-name", $this->config->get("Random-nicks")[$zahl]);
-		$this->nick->setNested($player->getName() . ".normal-name", $player->getName());
+	$this->nick->setNested($player->getName() . ".normal-name", $player->getName());
         $player->setDisplayName($this->config->get("Random-nicks")[$zahl]);
         $player->setNameTag($this->config->get("Random-nicks")[$zahl]);
         $message = $this->config->get("Nick-New");
