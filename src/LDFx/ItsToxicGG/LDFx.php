@@ -8,7 +8,6 @@ use LDFx\ItsToxicGG\LDCommand\FlyCommand;
 use LDFx\ItsToxicGG\LDCommand\NickColorCommand;
 use LDFx\ItsToxicGG\LDCommand\GUICommand;
 use LDFx\ItsToxicGG\LDCommand\SocialMenuCommand;
-use LDFx\ItsToxicGG\LDCommand\NickNameCommand;
 use LDFx\ItsToxicGG\LDTask\HPingTask;
 use LDFx\ItsToxicGG\LDUtils\PluginUtils;
 // POCKETMINE
@@ -79,7 +78,6 @@ class LDFx extends PluginBase implements Listener
       $this->getServer()->getCommandMap()->register("nickcolor", new NickColorCommand($this));
       $this->getServer()->getCommandMap()->register("games", new GUICommand($this));
       $this->getServer()->getCommandMap()->register("socialmenu", new SocialMenuCommand($this));
-      $this->getServer()->getCommandMap()->register("nickname", new NickNameCommand($this));
   }
   
   public function onDiable(): void{
@@ -103,11 +101,6 @@ class LDFx extends PluginBase implements Listener
                 break;
 			    
 		case 2:
-		    $this->NickForm($player);
-	            $player->sendMessage("§aYou Have Left the Settings to NickNamesForm!");
-	        break;
-			    
-		case 3:
 	            $player->sendMessage("§aYou Have Left The Form!");
 	        break;
             }
@@ -116,7 +109,6 @@ class LDFx extends PluginBase implements Listener
        $form->setContent("§fPick THe Setting!");
        $form->addButton("§aFly§cSettings");
        $form->addButton("§bNicknameColors");
-       $form->addButton("§eNick§cNames");
        $form->addButton("§cEXIT");
        $form->sendToPlayer($player);
        return $form;
@@ -211,68 +203,6 @@ class LDFx extends PluginBase implements Listener
 		  return $form;
   }
 	
-  public function NickForm(Player $player){
-	$form = new SimpleForm(function (Player $player, $data){
-	    if ($data !== null) {
-		 switch($data){
-		     case 0;
-                         $this->NickPlayer($player);
-			 PluginUtils::PlaySound($player, "random.pop", 1, 1);
-		     break;
-                        
-                     case 1:
-                         $this->randomNick($player);
-                         PluginUtils::PlaySound($player, "random.pop", 1, 1);
-                     break;
-                        
-		     case 2;
-			 if(!$this->nick->exists($player->getName())){
-			      $player->sendMessage($this->config->get("Prefix") . $this->config->get("Nick-Existen"));
-			      PluginUtils::PlaySound($player, "mob.villager.no", 1, 1);
-			      return true;
-		         }
-		         if($this->nick->exists($player->getName())){
-			      $player->setNameTag($this->nick->getNested($player->getName() . ".normal-name"));
-			      $player->setDisplayName($this->nick->getNested($player->getName() . ".normal-name"));
-			      $this->nick->remove($player->getName());
-			      $this->nick->save();
-			      $player->sendMessage($this->config->get("Prefix") . $this->config->get("Nick-Normal"));
-			      PluginUtils::PlaySound($player, "random.pop", 1, 1);
-			      return true;
-		         }
-		    break;
-
-		    case 3:
-			PluginUtils::PlaySound($player, "random.pop2", 1, 3);
-		    break;
-				    }
-				}
-			});
-			$form->setTitle("§d§lNickNames");
-			if($this->nick->exists($player->getName())){
-			$form->setContent($this->config->get("Nick-Content") . $this->nick->getNested($player->getName() . ".custom-name"));
-			}
-			if(!$this->nick->exists($player->getName())){
-			$form->setContent($this->config->get("Content-Normal"));
-			}
-            $form->addButton($this->config->get("Button-Nick"),0,"textures/ui/book_edit_default");
-            $form->addButton($this->config->get("Button-Random"),0,"textures/ui/book_metatag_default");
-  			$form->addButton($this->config->get("Button-Reset"),0,"textures/ui/book_trash_default");
-			/**$form->addButton($this->config->get("Button-HideNick"),0,"textures/ui/invisibility_effect"); */
-			$form->addButton($this->config->get("Button-Exit"),0,"textures/ui/cancel");
-			$player->sendForm($form);
-  }
-	
-  public function randomNick(Player $player){
-        $zahl = mt_rand(0, count($this->config->get("Random-nicks")) -1 );
-        $this->nick->setNested($player->getName() . ".custom-name", $this->config->get("Random-nicks")[$zahl]);
-	$this->nick->setNested($player->getName() . ".normal-name", $player->getName());
-        $player->setDisplayName($this->config->get("Random-nicks")[$zahl]);
-        $player->setNameTag($this->config->get("Random-nicks")[$zahl]);
-        $message = $this->config->get("Nick-New");
-        $player->sendMessage($this->config->get("Prefix") . str_replace("{NICK}", $this->config->get("Random-nicks")[$zahl], $message));
-  }
-	
   public function GUI($player){
        $form = new SimpleForm(function(Player $player, int $data = null){
             if($data === null){
@@ -355,11 +285,6 @@ class LDFx extends PluginBase implements Listener
 		if($player->isCreative()) return;
 		$player->setAllowFlight(false);
 		$player->sendMessage($this->getConfig()->get("FDMessage"));
-		$name = $player->getName();
-		$player->setDisplayName($name);
-		$player->setNameTag($name);
-                $this->nick->remove($name);
-		$this->nick->save();
 	}
 	  
         $player = $event->getPlayer();
