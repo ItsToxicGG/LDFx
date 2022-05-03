@@ -229,7 +229,7 @@ class LDFx extends PluginBase implements Listener
 			        if(!$this->nick->exists($player->getName())){
 				     $player->sendMessage($this->config->get("Prefix") . $this->config->get("Nick-Existen"));
 				     PluginUtils::PlaySound($player, "mob.villager.no", 1, 1);
-				     return true;
+				return true;
 		                }
 			        if($this->nick->exists($player->getName())){
 				    $player->setNameTag($this->nick->getNested($player->getName() . ".normal-name"));
@@ -238,7 +238,7 @@ class LDFx extends PluginBase implements Listener
 				    $this->nick->save();
 			            $player->sendMessage($this->config->get("Prefix") . $this->config->get("Nick-Normal"));
 				    PluginUtils::PlaySound($player, "random.pop", 1, 1);
-				    return true;
+				return true;
 				}
 			    break;
 
