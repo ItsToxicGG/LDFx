@@ -58,7 +58,6 @@ class LDFx extends PluginBase implements Listener
       @mkdir($this->getDataFolder());
       $this->saveDefaultConfig();
       $this->config = $this->getConfig();  
-      $this->getScheduler()->scheduleRepeatingTask(new HPingTask($this), 20);
       $this->getServer()->getCommandMap()->register("settings", new SettingsCommand($this));
       $this->getServer()->getCommandMap()->register("fly", new FlyCommand($this));
       $this->getServer()->getCommandMap()->register("nickcolor", new NickColorCommand($this));
