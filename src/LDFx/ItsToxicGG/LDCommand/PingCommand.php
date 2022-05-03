@@ -44,7 +44,8 @@ class PingCommand extends Command implements PluginOwned{
 				}
 				break;
 		}
-	}
+	        
+    }
     
     public function getPlugin(): Plugin{
             return $this->plugin;
