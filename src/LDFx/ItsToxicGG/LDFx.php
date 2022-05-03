@@ -331,55 +331,6 @@ class LDFx extends PluginBase implements Listener
         $player->getArmorInventory()->clearAll();
   }
 	
-  public function onEntityDamageEventByEntity(EntityDamageByEntityEvent $event): void{
-	$damager = $event->getDamager();
-	if(!$event instanceof EntityDamageByChildEntityEvent and $damager instanceof Living and $damager->isSprinting()){
-		$event->setKnockback(1.9*$event->getKnockback());
-		$damager->setSprinting(false);
-	}
-  }
-	
-  public function onDamage(EntityDamageEvent $event) : void{
-	$entity = $event->getEntity();
-	if(!$entity instanceof Player){
-		return;
-	}
-	if($event->getCause() === EntityDamageEvent::CAUSE_VOID){
-		if($this->saveFromVoidAllowed($entity->getWorld())){
-			$this->savePlayerFromVoid($entity);
-			$event->cancel();
-		}
-	}
-  }
-	
-  private function saveFromVoidAllowed(World $world) : bool {
-	if(empty($this->enabledWorlds) and empty($this->disabledWorlds)){
-		return true;
-	}
-	$levelFolderName = $world->getFolderName();
-
-	if(in_array($levelFolderName, $this->disabledWorlds)){
-			return false;
-	}
-	if(in_array($levelFolderName, $this->enabledWorlds)){
-		return true;
-	}
-	if(!empty($this->enabledWorlds) and !in_array($levelFolderName, $this->enabledWorlds)){
-		return false;
-	}
-
-	return true;
-  }
-
-  private function savePlayerFromVoid(Player $player) : void{
-	if($this->useDefaultWorld){
-		$position = $player->getServer()->getWorldManager()->getDefaultWorld()->getSpawnLocation();
-	} else {
-		$position = $player->getWorld()->getSpawnLocation();
-	}
-	$player->teleport($position);
-  }
-	
   public function onProjectileHit(ProjectileHitEvent $event){
 	$player = $event->getEntity()->getOwningEntity();
 	if(!$event->getEntity() instanceof Arrow) return;
