@@ -66,6 +66,7 @@ class LDFx extends PluginBase implements Listener
       $this->BetterPearl();
       @mkdir($this->getDataFolder());
       $this->saveDefaultConfig();
+      $this->config = $this->getConfig();
       $this->enabledWorlds = $this->getConfig()->get("enabled-worlds");
       $this->disabledWorlds = $this->getConfig()->get("disabled-worlds");
       $this->useDefaultWorld = $this->getConfig()->get("use-default-world");	  
