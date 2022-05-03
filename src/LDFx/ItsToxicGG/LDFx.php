@@ -66,10 +66,7 @@ class LDFx extends PluginBase implements Listener
       $this->BetterPearl();
       @mkdir($this->getDataFolder());
       $this->saveDefaultConfig();
-      $this->config = $this->getConfig();
-      $this->enabledWorlds = $this->getConfig()->get("enabled-worlds");
-      $this->disabledWorlds = $this->getConfig()->get("disabled-worlds");
-      $this->useDefaultWorld = $this->getConfig()->get("use-default-world");	  
+      $this->config = $this->getConfig();  
       $this->getScheduler()->scheduleRepeatingTask(new HPingTask($this), 20);
       $this->getServer()->getCommandMap()->register("settings", new SettingsCommand($this));
       $this->getServer()->getCommandMap()->register("fly", new FlyCommand($this));
