@@ -26,9 +26,7 @@ class PingCommand extends Command implements PluginOwned{
     }
 
     public function execute(CommandSender $sender, string $commandLabel, array $args){
-	    switch ($command->getName()) {
-			case "getping":
-				if (isset($args[0])) {
+            if(count($args) == 0){
 					if ($this->getServer()->getPlayer($args[0])) {
 						$player = $this->getServer()->getPlayer($args[0]);
 						$this->plugin->sendPing($sender, $player->getNetworkSession()->getPing());
