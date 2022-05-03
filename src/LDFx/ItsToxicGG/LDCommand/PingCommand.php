@@ -19,40 +19,41 @@ class PingCommand extends Command implements PluginOwned{
     private $plugin;
 
     public function __construct(LDFx $plugin){
-        $this->plugin = $plugin;
+            $this->plugin = $plugin;
         
-        parent::__construct("ping", "§r§fGet Your Ping With LDFx, By ItsToxicGG", "§cUse: /ping", ["ping"]);
-        $this->setAliases(["pg"]);
+            parent::__construct("ping", "§r§fGet Your Ping With LDFx, By ItsToxicGG", "§cUse: /ping", ["ping"]);
+            $this->setAliases(["pg"]);
     }
 
     public function execute(CommandSender $sender, string $commandLabel, array $args){
-        if(count($args) == 0){
-            if($sender instanceof Player) 
-		if ($this->getServer()->getPlayer($args[0])) {
-		     $player = $this->getServer()->getPlayer($args[0]);
-		     $this->plugin->sendPing($sender, $player->getNetworkSession()->getPing());
-		     return true;
-		} else {
-		     $sender->sendMessage(TextFormat::RED . "Player not found");
+	    switch ($command->getName()) {
+			case "getping":
+				if (isset($args[0])) {
+					if ($this->getServer()->getPlayer($args[0])) {
+						$player = $this->getServer()->getPlayer($args[0]);
+						$this->plugin->sendPing($sender, $player->getNetworkSession()->getPing());
+						return true;
+					} else {
+						$sender->sendMessage(TextFormat::RED . "Player not found");
+					}
+				} else {
+					if ($sender instanceof Player) {
+						$this->plugin->sendPing($sender, $sender->getNetworkSession()->getPing());
+						return true;
+					} else {
+						$sender->sendMessage(TextFormat::RED . "Please enter a player name");
+					}
+				}
+				break;
 		}
-	} else {
-		if ($sender instanceof Player) {
-		     $this->sendPing($sender, $sender->getNetworkSession()->getPing());
-		     return true;
-		} else {
-		     $sender->sendMessage(TextFormat::RED . "Please enter a player name");
-		}
+		return false;
 	}
-	break;
-      }
-      return false;
-    }
     
     public function getPlugin(): Plugin{
-        return $this->plugin;
+            return $this->plugin;
     }
 
     public function getOwningPlugin(): LDFx{
-        return $this->plugin;
+            return $this->plugin;
     }
 }
