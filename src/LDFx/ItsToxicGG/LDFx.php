@@ -49,9 +49,6 @@ use Vecnavium\FormsUI\SimpleForm;
 class LDFx extends PluginBase implements Listener
 {
 	
-  private $nick;
-  private $config;	
-	
   /** @var string[] */
   private $enabledWorlds = [];
 
@@ -67,8 +64,6 @@ class LDFx extends PluginBase implements Listener
       $this->BetterPearl();
       @mkdir($this->getDataFolder());
       $this->saveDefaultConfig();
-      $this->nick = new Config($this->getDataFolder() . "nicks.yml", Config::YAML);
-      $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML);
       $this->enabledWorlds = $this->getConfig()->get("enabled-worlds");
       $this->disabledWorlds = $this->getConfig()->get("disabled-worlds");
       $this->useDefaultWorld = $this->getConfig()->get("use-default-world");	  
@@ -329,8 +324,8 @@ class LDFx extends PluginBase implements Listener
   }
 	
   public function clear($player){
-      $player->getInventory()->clearAll();
-      $player->getArmorInventory()->clearAll();
+        $player->getInventory()->clearAll();
+        $player->getArmorInventory()->clearAll();
   }
 	
   public function onEntityDamageEventByEntity(EntityDamageByEntityEvent $event): void{
