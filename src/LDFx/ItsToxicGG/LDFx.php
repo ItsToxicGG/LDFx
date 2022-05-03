@@ -50,15 +50,6 @@ class LDFx extends PluginBase implements Listener
 {
 	
   private $config;
-	
-  /** @var string[] */
-  private $enabledWorlds = [];
-
-  /** @var string[] */
-  private $disabledWorlds = [];
-
-  /** @var bool */
-  private $useDefaultWorld = false;
  
   public function onEnable(): void{
       $this->getLogger()->info("§aEnabled LDFx");
