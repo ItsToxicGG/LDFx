@@ -5,6 +5,8 @@ namespace LDFx\ItsToxicGG\LDCommand;
 use pocketmine\Server;
 use pocketmine\player\Player;
 use pocketmine\plugin\Plugin;
+use pocketmine\event\Listener;
+use pocketmine\utils\Binary;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
@@ -28,14 +30,14 @@ class PingCommand extends Command implements PluginOwned{
             if($sender instanceof Player) 
 		if ($this->getServer()->getPlayer($args[0])) {
 		     $player = $this->getServer()->getPlayer($args[0]);
-		     $this->plugin->sendPing($sender, $player->getPing());
+		     $this->plugin->sendPing($sender, $player->getNetworkSession()->getPing());
 		     return true;
 		} else {
 		     $sender->sendMessage(TextFormat::RED . "Player not found");
 		}
 	} else {
 		if ($sender instanceof Player) {
-		     $this->sendPing($sender, $sender->getPing());
+		     $this->sendPing($sender, $sender->getNetworkSession()->getPing());
 		     return true;
 		} else {
 		     $sender->sendMessage(TextFormat::RED . "Please enter a player name");
