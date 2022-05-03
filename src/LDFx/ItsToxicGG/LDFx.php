@@ -238,7 +238,7 @@ class LDFx extends PluginBase implements Listener
 				    $this->nick->save();
 			            $player->sendMessage($this->config->get("Prefix") . $this->config->get("Nick-Normal"));
 				    PluginUtils::PlaySound($player, "random.pop", 1, 1);
-				   return true;
+				    return true;
 				}
 			    break;
 
