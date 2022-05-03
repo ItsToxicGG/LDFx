@@ -41,8 +41,6 @@ use Vecnavium\FormsUI\SimpleForm;
 
 class LDFx extends PluginBase implements Listener
 {
-	
-  private $config;
   
   public function onEnable(): void{
       $this->getLogger()->info("§aEnabled LDFx");
