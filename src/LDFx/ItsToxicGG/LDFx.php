@@ -71,9 +71,9 @@ class LDFx extends PluginBase implements Listener
   public function onEnable(): void{
       $this->getLogger()->info("§aEnabled LDFx");
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
-      $this->getScheduler()->scheduleRepeatingTask(new HAlwaysDayTask(), 40);
       $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);	  
       $this->BetterPearl();
+      $this->getScheduler()->scheduleRepeatingTask(new HAlwaysDayTask(), 40);
       @mkdir($this->getDataFolder());
       $this->saveDefaultConfig();
       $this->enabledWorlds = $this->getConfig()->get("enabled-worlds");
