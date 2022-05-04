@@ -6,7 +6,6 @@ namespace LDFx\ItsToxicGG;
 use LDFx\ItsToxicGG\LDCommand\SettingsCommand;
 use LDFx\ItsToxicGG\LDCommand\FlyCommand;
 use LDFx\ItsToxicGG\LDCommand\NickColorCommand;
-use LDFx\ItsToxicGG\LDCommand\NickNameCommand;
 use LDFx\ItsToxicGG\LDCommand\GUICommand;
 use LDFx\ItsToxicGG\LDCommand\SocialMenuCommand;
 use LDFx\ItsToxicGG\LDTask\HAlwaysDayTask;
@@ -52,8 +51,6 @@ use Vecnavium\FormsUI\SimpleForm;
 class LDFx extends PluginBase implements Listener
 {
 	
-  public $nick;
-	
   public int $cooldown;
   public string $message;
 
@@ -80,7 +77,6 @@ class LDFx extends PluginBase implements Listener
       $this->enabledWorlds = $this->getConfig()->get("enabled-worlds");
       $this->disabledWorlds = $this->getConfig()->get("disabled-worlds");
       $this->useDefaultWorld = $this->getConfig()->get("use-default-world");
-      $this->nick = new Config($this->getDataFolder() . "nicks.yml", Config::YAML);
       $this->cooldown = $this->getConfig()->get('cooldown');
       $this->message = $this->getConfig()->get('message');
       $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML);
@@ -89,7 +85,6 @@ class LDFx extends PluginBase implements Listener
       $this->getServer()->getCommandMap()->register("nickcolor", new NickColorCommand($this));
       $this->getServer()->getCommandMap()->register("games", new GUICommand($this));
       $this->getServer()->getCommandMap()->register("socialmenu", new SocialMenuCommand($this));
-      $this->getServer()->getCommandMap()->register("nickname", new NickNameCommand($this));
   }
   
   public function onDiable(): void{
