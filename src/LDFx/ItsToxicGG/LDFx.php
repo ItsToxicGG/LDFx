@@ -389,6 +389,13 @@ class LDFx extends PluginBase implements Listener
 
   public function onJoin(PlayerJoinEvent $event) : void{
 	$player = $event->getPlayer();
+	$event->setJoinMessage("");
+        $player = $event->getPlayer();
+        $name = $player->getName();
+		$player->setDisplayName($name);
+		$player->setNameTag($name);
+        $this->nick->remove($name);
+		$this->nick->save();
 	if($this->getConfig()->get("JFlyReset") === true){
 		if($player->isCreative()) return;
 		$player->setAllowFlight(false);
@@ -406,6 +413,8 @@ class LDFx extends PluginBase implements Listener
         $player->getInventory()->setItem(0, $item1);
         $player->getInventory()->setItem(4, $item2);
         $player->getInventory()->setItem(8, $item3);
+	  
+	
   }
 	
   public function onClick(PlayerInteractEvent $event){
