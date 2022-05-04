@@ -18,7 +18,7 @@
   tps-check: 20
 
   #Choose the ping of when a player should be kicked, (I recommend you put it above 2000)
-  ping-kick: 2000
+  ping-kick: 2500
 
   #Choose the kick message when a player is kicked for exceeding the ping limit
   kick-message: "§7You were kicked, this was caused by high ping!"
