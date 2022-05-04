@@ -10,7 +10,7 @@ use LDFx\ItsToxicGG\LDFx;
 use function str_replace;
 use function time;
 
-class EventListener extends PluginBase implements Listener {
+class EventListener implements Listener {
   
   public $plugin;	
 	
