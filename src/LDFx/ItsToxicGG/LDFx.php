@@ -333,19 +333,6 @@ class LDFx extends PluginBase implements Listener
 	if($entity instanceof Player) $this->clear($entity);
   }
 	
-  public function onItemUse(PlayerItemUseEvent $event) : void {
-	if($event->getItem() instanceof EnderPearl){
-		$player = $event->getPlayer();
-		$cd = $this->cooldowns[$player->getId()] ?? null;
-		if($cd !== null && time() - $cd < $this->cooldown){
-			$event->cancel();
-			$player->sendMessage(str_replace('{cooldown}', $this->cooldown - (time() - $cd), $this->message));
-		} else {
-			$this->cooldowns[$player->getId()] = time();
-		}
-	}
-  }
-	
   public function clear($player){
         $player->getInventory()->clearAll();
         $player->getArmorInventory()->clearAll();
@@ -443,10 +430,6 @@ class LDFx extends PluginBase implements Listener
                $projectile->setOwningEntity(null);
            }
        }, EventPriority::NORMAL, $this);
-   }
-	
-   public function onQuit(PlayerQuitEvent $event) : void {
-	unset($this->cooldowns[$event->getPlayer()->getId()]);
    }
 }       
  
