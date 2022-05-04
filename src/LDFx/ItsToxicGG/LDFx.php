@@ -285,12 +285,12 @@ class LDFx extends PluginBase implements Listener
 		$name = $player->getName();
 		$player = $event->getPlayer();
 		if(!$this->nick->exists($name)){
-			return true;
+		return true;
 		}
 		if($this->nick->exists($name)){
 		   $this->nick->remove($name);
 		   $this->nick->save();
-		    return true;
+		   return true;
 		}
     }
     
