@@ -9,6 +9,7 @@ use LDFx\ItsToxicGG\LDCommand\NickColorCommand;
 use LDFx\ItsToxicGG\LDCommand\GUICommand;
 use LDFx\ItsToxicGG\LDCommand\SocialMenuCommand;
 use LDFx\ItsToxicGG\LDTask\HPingTask;
+use LDFx\ItsToxicGG\LDTask\HAlwaysDayTask;
 use LDFx\ItsToxicGG\LDEvent\EventListener;
 use LDFx\ItsToxicGG\LDUtils\PluginUtils;
 // POCKETMINE
@@ -70,7 +71,8 @@ class LDFx extends PluginBase implements Listener
   public function onEnable(): void{
       $this->getLogger()->info("§aEnabled LDFx");
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
-      $this->getServer()->getPluginManager()->registerEvents(new EventListener($this));	  
+      $this->getScheduler()->scheduleRepeatingTask(new DayTimeTask(), 40);
+      $this->getServer()->getPluginManager()->registerEvents(new EventListener());	  
       $this->BetterPearl();
       @mkdir($this->getDataFolder());
       $this->saveDefaultConfig();
