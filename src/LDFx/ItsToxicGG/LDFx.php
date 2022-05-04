@@ -68,21 +68,6 @@ class LDFx extends PluginBase implements Listener
   public function onDiable(): void{
       $this->getLogger()->info("§cDisabled LDFx");
   }
-	
-  private function sendPing($sender, $ping) {
-	if ($ping <= 20) {
-		$sender->sendMessage(TextFormat::GREEN . "Connection: Excellent (" . $ping . "ms)");
-	} elseif ($ping <= 90) {
-		$sender->sendMessage(TextFormat::GREEN . "Connection: Good (" . $ping . "ms)");
-	} elseif ($ping <= 150) {
-			$sender->sendMessage(TextFormat::YELLOW . "Connection: Okay (" . $ping . "ms)");
-	} elseif ($ping <= 250) {
-			$sender->sendMessage(TextFormat::YELLOW . "Connection: Average (" . $ping . "ms)");
-	} else {
-		$sender->sendMessage(TextFormat::RED . "Connection: Bad (" . $ping . "ms)");
-	}
-  }
-
   
   public function SettingsForm($player){
        $form = new SimpleForm(function(Player $player, int $data = null){
