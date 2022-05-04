@@ -7,10 +7,10 @@ use pocketmine\scheduler\Task;
 
 class HPingTask extends Task {
 
-    private Main $plugin;
+    private LDFx $plugin;
 
-    public function __construct(Main $main) {
-        $this->plugin = $main;
+    public function __construct(LDFx $plugin) {
+        $this->plugin = $plugin;
     }
 
     public function onRun() : void {
