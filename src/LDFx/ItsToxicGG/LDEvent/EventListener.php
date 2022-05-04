@@ -12,7 +12,9 @@ use function time;
 
 class EventListener implements Listener {
   
-  public $plugin;	
+  public $plugin;
+  public $message;
+  public $cooldown
 	
   public function __construct(LDFx $plugin){
     $this->plugin = $plugin;
