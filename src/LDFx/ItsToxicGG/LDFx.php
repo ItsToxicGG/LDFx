@@ -53,6 +53,8 @@ use Vecnavium\FormsUI\SimpleForm;
 class LDFx extends PluginBase implements Listener
 {
 	
+  public $nick;
+	
   public int $cooldown;
   public string $message;
 
