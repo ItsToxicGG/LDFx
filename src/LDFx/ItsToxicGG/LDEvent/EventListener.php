@@ -12,6 +12,8 @@ use function time;
 
 class EventListener extends PluginBase implements Listener {
   
+  public $plugin;	
+	
   public function __construct(LDFx $plugin){
     $this->plugin = $plugin;
   }
