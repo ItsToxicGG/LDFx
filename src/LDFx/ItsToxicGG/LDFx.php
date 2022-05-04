@@ -72,7 +72,7 @@ class LDFx extends PluginBase implements Listener
       $this->getLogger()->info("§aEnabled LDFx");
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
       $this->getScheduler()->scheduleRepeatingTask(new HAlwaysDayTask(), 40);
-      $this->getServer()->getPluginManager()->registerEvents(new EventListener());	  
+      $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);	  
       $this->BetterPearl();
       @mkdir($this->getDataFolder());
       $this->saveDefaultConfig();
