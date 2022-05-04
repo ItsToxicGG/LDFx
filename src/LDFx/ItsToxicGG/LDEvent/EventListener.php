@@ -17,7 +17,7 @@ class EventListener implements Listener {
   public $cooldown;
 	
   public function __construct(LDFx $plugin){
-    $this->plugin = $plugin;
+          $this->plugin = $plugin;
   }
 
 	public function onItemUse(PlayerItemUseEvent $event) : void {
