@@ -1,6 +1,6 @@
 <?php
 
-namespace ItsToxicGG\LDTask\Task;
+namespace LDFx\ItsToxicGG\LDTask;
 
 use LDFx\ItsToxicGG\LDFx;
 use pocketmine\scheduler\Task;
