@@ -10,6 +10,7 @@ use LDFx\ItsToxicGG\LDCommand\NickNameCommand;
 use LDFx\ItsToxicGG\LDCommand\GUICommand;
 use LDFx\ItsToxicGG\LDCommand\SocialMenuCommand;
 use LDFx\ItsToxicGG\LDTask\HPingTask;
+use LDFx\ItsToxicGG\LDTask\HAlwaysTask;
 use LDFx\ItsToxicGG\LDEvent\EventListener;
 use LDFx\ItsToxicGG\LDUtils\PluginUtils;
 // POCKETMINE
