@@ -50,6 +50,15 @@ class LDFx extends PluginBase implements Listener
 {
 	
   private $config;
+	
+  /** @var string[] */
+  private $enabledWorlds = [];
+
+  /** @var string[] */
+  private $disabledWorlds = [];
+
+  /** @var bool */
+  private $useDefaultWorld = false; 
  
   public function onEnable(): void{
       $this->getLogger()->info("§aEnabled LDFx");
@@ -57,6 +66,9 @@ class LDFx extends PluginBase implements Listener
       $this->BetterPearl();
       @mkdir($this->getDataFolder());
       $this->saveDefaultConfig();
+      $this->enabledWorlds = $this->getConfig()->get("enabled-worlds");
+      $this->disabledWorlds = $this->getConfig()->get("disabled-worlds");
+      $this->useDefaultWorld = $this->getConfig()->get("use-default-world");
       $this->config = $this->getConfig();  
       $this->getServer()->getCommandMap()->register("settings", new SettingsCommand($this));
       $this->getServer()->getCommandMap()->register("fly", new FlyCommand($this));
@@ -316,6 +328,55 @@ class LDFx extends PluginBase implements Listener
   public function clear($player){
         $player->getInventory()->clearAll();
         $player->getArmorInventory()->clearAll();
+  }
+	
+  public function onEntityDamageEventByEntity(EntityDamageByEntityEvent $event): void{
+	$damager = $event->getDamager();
+	if(!$event instanceof EntityDamageByChildEntityEvent and $damager instanceof Living and $damager->isSprinting()){
+		$event->setKnockback(1.9*$event->getKnockback());
+		$damager->setSprinting(false);
+	}
+  }
+
+  public function onDamage(EntityDamageEvent $event) : void{
+	$entity = $event->getEntity();
+	if(!$entity instanceof Player){
+		return;
+	}
+	if($event->getCause() === EntityDamageEvent::CAUSE_VOID){
+		if($this->saveFromVoidAllowed($entity->getWorld())){
+			$this->savePlayerFromVoid($entity);
+			$event->cancel();
+		}
+	}
+  }
+
+  private function saveFromVoidAllowed(World $world) : bool {
+	if(empty($this->enabledWorlds) and empty($this->disabledWorlds)){
+		return true;
+	}
+	$levelFolderName = $world->getFolderName();
+
+	if(in_array($levelFolderName, $this->disabledWorlds)){
+			return false;
+	}
+	if(in_array($levelFolderName, $this->enabledWorlds)){
+		return true;
+	}
+	if(!empty($this->enabledWorlds) and !in_array($levelFolderName, $this->enabledWorlds)){
+		return false;
+	}
+
+	return true;
+  }
+
+  private function savePlayerFromVoid(Player $player) : void{
+	if($this->useDefaultWorld){
+		$position = $player->getServer()->getWorldManager()->getDefaultWorld()->getSpawnLocation();
+	} else {
+		$position = $player->getWorld()->getSpawnLocation();
+	}
+	$player->teleport($position);
   }
 	
   public function onProjectileHit(ProjectileHitEvent $event){
