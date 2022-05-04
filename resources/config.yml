@@ -45,6 +45,10 @@
 
   use-default-world: false
 # EndOfAntiVoid-Config
+# EnderPearlCoolDown-Config
+cooldown: 5
+message: "you must wait {cooldown}s to use an enderpearl again!"
+# EndOfEnderPearlCoolDown-Config
 # LobbyCore-Config
   #Items 1 | Compass
   item1-name: "§r§cReport Player" # Name Items
