@@ -9,6 +9,7 @@ use LDFx\ItsToxicGG\LDCommand\NickColorCommand;
 use LDFx\ItsToxicGG\LDCommand\GUICommand;
 use LDFx\ItsToxicGG\LDCommand\SocialMenuCommand;
 use LDFx\ItsToxicGG\LDTask\HPingTask;
+use LDFx\ItsToxicGG\LDEvent\EventListener;
 use LDFx\ItsToxicGG\LDUtils\PluginUtils;
 // POCKETMINE
 use pocketmine\plugin\PluginBase;
@@ -69,6 +70,7 @@ class LDFx extends PluginBase implements Listener
   public function onEnable(): void{
       $this->getLogger()->info("§aEnabled LDFx");
       $this->getServer()->getPluginManager()->registerEvents($this, $this);
+      $this->getServer()->getPluginManager()->registerEvents(new EventListener($this));	  
       $this->BetterPearl();
       @mkdir($this->getDataFolder());
       $this->saveDefaultConfig();
