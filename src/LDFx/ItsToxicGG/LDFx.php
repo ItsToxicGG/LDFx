@@ -24,11 +24,13 @@ use pocketmine\event\Listener;
 use pocketmine\utils\TextFormat;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerQuitEvent;
+use pocketmine\event\player\PlayerItemUseEvent;
 use pocketmine\player\Player;
 use pocketmine\event\EventPriority;
 use pocketmine\event\entity\ProjectileHitEvent;
 use pocketmine\entity\projectile\EnderPearl;
 use pocketmine\entity\Living;
+use pocketmine\item\EnderPearl;
 use pocketmine\item\ItemFactory;
 use pocketmine\math\Vector3;
 use pocketmine\world\Position;
@@ -48,6 +50,11 @@ use Vecnavium\FormsUI\SimpleForm;
 
 class LDFx extends PluginBase implements Listener
 {
+	
+  public int $cooldown;
+  public string $message;
+
+  public array $cooldowns = [];  
 	
   private $config;
 	
@@ -69,6 +76,8 @@ class LDFx extends PluginBase implements Listener
       $this->enabledWorlds = $this->getConfig()->get("enabled-worlds");
       $this->disabledWorlds = $this->getConfig()->get("disabled-worlds");
       $this->useDefaultWorld = $this->getConfig()->get("use-default-world");
+      $this->cooldown = $this->getConfig()->get('cooldown');
+      $this->message = $this->getConfig()->get('message');
       $this->config = $this->getConfig();  
       $this->getServer()->getCommandMap()->register("settings", new SettingsCommand($this));
       $this->getServer()->getCommandMap()->register("fly", new FlyCommand($this));
@@ -325,6 +334,19 @@ class LDFx extends PluginBase implements Listener
 	if($entity instanceof Player) $this->clear($entity);
   }
 	
+  public function onItemUse(PlayerItemUseEvent $event) : void {
+	if($event->getItem() instanceof EnderPearl){
+		$player = $event->getPlayer();
+		$cd = $this->cooldowns[$player->getId()] ?? null;
+		if($cd !== null && time() - $cd < $this->cooldown){
+			$event->cancel();
+			$player->sendMessage(str_replace('{cooldown}', $this->cooldown - (time() - $cd), $this->message));
+		} else {
+			$this->cooldowns[$player->getId()] = time();
+		}
+	}
+  }
+	
   public function clear($player){
         $player->getInventory()->clearAll();
         $player->getArmorInventory()->clearAll();
@@ -423,5 +445,9 @@ class LDFx extends PluginBase implements Listener
            }
        }, EventPriority::NORMAL, $this);
    }
-}        
+	
+   public function onQuit(PlayerQuitEvent $event) : void {
+	unset($this->cooldowns[$event->getPlayer()->getId()]);
+   }
+}       
  
