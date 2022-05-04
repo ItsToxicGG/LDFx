@@ -9,7 +9,6 @@ use LDFx\ItsToxicGG\LDCommand\NickColorCommand;
 use LDFx\ItsToxicGG\LDCommand\NickNameCommand;
 use LDFx\ItsToxicGG\LDCommand\GUICommand;
 use LDFx\ItsToxicGG\LDCommand\SocialMenuCommand;
-use LDFx\ItsToxicGG\LDTask\HPingTask;
 use LDFx\ItsToxicGG\LDTask\HAlwaysDayTask;
 use LDFx\ItsToxicGG\LDEvent\EventListener;
 use LDFx\ItsToxicGG\LDUtils\PluginUtils;
@@ -75,7 +74,6 @@ class LDFx extends PluginBase implements Listener
       $this->getLogger()->info("§aEnabled LDFx");
       $this->getServer()->getPluginManager()->registerEvents($this, $this);  
       $this->BetterPearl();
-      $this->getScheduler()->scheduleRepeatingTask(new HPingTask($this), 20);
       $this->getScheduler()->scheduleRepeatingTask(new HAlwaysDayTask(), 40);
       @mkdir($this->getDataFolder());
       $this->saveDefaultConfig();
