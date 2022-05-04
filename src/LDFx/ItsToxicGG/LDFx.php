@@ -279,20 +279,20 @@ class LDFx extends PluginBase implements Listener
        return $form;
   }
 	
-   public function onQuit(PlayerQuitEvent $event){
+	public function onQuit(PlayerQuitEvent $event){
         $event->setQuitMessage("");
         $player = $event->getPlayer();
 		$name = $player->getName();
 		$player = $event->getPlayer();
 		if(!$this->nick->exists($name)){
-		return true;
+			return true;
 		}
 		if($this->nick->exists($name)){
 		   $this->nick->remove($name);
 		   $this->nick->save();
-		   return true;
+		    return true;
 		}
-    }
+	}
     
     public function NickForm(Player $player){
 		$form = new SimpleForm(function (Player $player, $data){
@@ -352,9 +352,9 @@ class LDFx extends PluginBase implements Listener
 	}
 	
 	public function NickPlayer(Player $player){
-	     $form = new CustomForm(function (Player $player, $data){
-		if($data !== null){
-                $confignick = $this->config;
+		$form = new CustomForm(function (Player $player, $data){
+				if($data !== null){
+                    $confignick = $this->config;
                     $confignick = $confignick->getAll();
                     if(!in_array($data[0], $confignick["Not-allow-custom-nicks"])){
 					    $this->nick->setNested($player->getName() . ".custom-name", $data[0]);
@@ -375,9 +375,9 @@ class LDFx extends PluginBase implements Listener
 		$form->setTitle("§l§dNick - Change");
 		$form->addInput($this->config->get("Input"));
 		$player->sendForm($form);
-  }	
-	
-  public function randomNick(Player $player){
+	}
+    
+    public function randomNick(Player $player){
         $zahl = mt_rand(0, count($this->config->get("Random-nicks")) -1 );
         $this->nick->setNested($player->getName() . ".custom-name", $this->config->get("Random-nicks")[$zahl]);
 		$this->nick->setNested($player->getName() . ".normal-name", $player->getName());
@@ -385,7 +385,7 @@ class LDFx extends PluginBase implements Listener
         $player->setNameTag($this->config->get("Random-nicks")[$zahl]);
         $message = $this->config->get("Nick-New");
         $player->sendMessage($this->config->get("Prefix") . str_replace("{NICK}", $this->config->get("Random-nicks")[$zahl], $message));
-  }  	
+    }
 	
   private function FlyMWCheck(Entity $entity) : bool{
         if(!$entity instanceof Player) return false;
