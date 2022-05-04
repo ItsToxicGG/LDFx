@@ -82,9 +82,10 @@ class LDFx extends PluginBase implements Listener
       $this->enabledWorlds = $this->getConfig()->get("enabled-worlds");
       $this->disabledWorlds = $this->getConfig()->get("disabled-worlds");
       $this->useDefaultWorld = $this->getConfig()->get("use-default-world");
+      $this->nick = new Config($this->getDataFolder() . "nicks.yml", Config::YAML);
       $this->cooldown = $this->getConfig()->get('cooldown');
       $this->message = $this->getConfig()->get('message');
-      $this->config = $this->getConfig();  
+      $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML);
       $this->getServer()->getCommandMap()->register("settings", new SettingsCommand($this));
       $this->getServer()->getCommandMap()->register("fly", new FlyCommand($this));
       $this->getServer()->getCommandMap()->register("nickcolor", new NickColorCommand($this));
@@ -375,7 +376,17 @@ class LDFx extends PluginBase implements Listener
 		$form->addInput($this->config->get("Input"));
 		$player->sendForm($form);
   }	
-  
+	
+  public function randomNick(Player $player){
+        $zahl = mt_rand(0, count($this->config->get("Random-nicks")) -1 );
+        $this->nick->setNested($player->getName() . ".custom-name", $this->config->get("Random-nicks")[$zahl]);
+		$this->nick->setNested($player->getName() . ".normal-name", $player->getName());
+        $player->setDisplayName($this->config->get("Random-nicks")[$zahl]);
+        $player->setNameTag($this->config->get("Random-nicks")[$zahl]);
+        $message = $this->config->get("Nick-New");
+        $player->sendMessage($this->config->get("Prefix") . str_replace("{NICK}", $this->config->get("Random-nicks")[$zahl], $message));
+  }  	
+	
   private function FlyMWCheck(Entity $entity) : bool{
         if(!$entity instanceof Player) return false;
 	if($this->getConfig()->get("FLY-MW") === "on"){
