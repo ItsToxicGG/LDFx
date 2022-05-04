@@ -30,7 +30,6 @@ use pocketmine\event\EventPriority;
 use pocketmine\event\entity\ProjectileHitEvent;
 use pocketmine\entity\projectile\EnderPearl;
 use pocketmine\entity\Living;
-use pocketmine\item\EnderPearl;
 use pocketmine\item\ItemFactory;
 use pocketmine\math\Vector3;
 use pocketmine\world\Position;
