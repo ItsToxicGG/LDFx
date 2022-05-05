@@ -297,17 +297,18 @@ class LDFx extends PluginBase implements Listener
 		$player->setAllowFlight(false);
 		$player->sendMessage($this->getConfig()->get("FDMessage"));
 		if($this->getConfig()->get("LC-MW") === "on"){
-		if(!in_array($player->getWorld()->getDisplayName(), $this->getConfig()->get("LC-Worlds"))){
-	                $player->getInventory()->clearAll();
-                        $item1 = ItemFactory::getInstance()->get(450, 0, 1);
-                        $item2 = ItemFactory::getInstance()->get(345, 0, 1);
-                        $item3 = ItemFactory::getInstance()->get(421, 0, 1);
-                        $item1->setCustomName($this->getConfig()->get("item1-name"));
-                        $item2->setCustomName($this->getConfig()->get("item2-name"));
-                        $item3->setCustomName($this->getConfig()->get("item3-name"));
-                        $player->getInventory()->setItem(0, $item1);
-                        $player->getInventory()->setItem(4, $item2);
-                        $player->getInventory()->setItem(8, $item3);
+		     if(!in_array($player->getWorld()->getDisplayName(), $this->getConfig()->get("LC-Worlds"))){
+	                 $player->getInventory()->clearAll();
+                         $item1 = ItemFactory::getInstance()->get(450, 0, 1);
+                         $item2 = ItemFactory::getInstance()->get(345, 0, 1);
+                         $item3 = ItemFactory::getInstance()->get(421, 0, 1);
+                         $item1->setCustomName($this->getConfig()->get("item1-name"));
+                         $item2->setCustomName($this->getConfig()->get("item2-name"));
+                         $item3->setCustomName($this->getConfig()->get("item3-name"));
+                         $player->getInventory()->setItem(0, $item1);
+                         $player->getInventory()->setItem(4, $item2);
+                         $player->getInventory()->setItem(8, $item3);
+		     }
 	       }
 	}
   }
