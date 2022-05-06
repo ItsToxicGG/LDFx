@@ -3,6 +3,12 @@
 # LDFxConfig V1.0
 # BY ITSTOXICGG
 # ----------
+# Word Meanings:
+# - J => Join
+# - FD => FlyDisable
+# - A => Allow
+# - Fx => (does not have a meaning)
+# ----------
 # Fly-Config
   # The below config allows the plugin to reset flight mode when joining the server
   JFlyReset: true
@@ -45,6 +51,10 @@
 
   use-default-world: false
 # EndOfAntiVoid-Config
+# NoFly-Config
+ANoFly: True
+ASpectator: True
+NoFly-Kick-Message: "You Have been kicked, Reason: Fly Hacks"
 # EnderPearlCoolDown-Config
 cooldown: 5
 message: "you must wait {cooldown}s to use an enderpearl again!"
