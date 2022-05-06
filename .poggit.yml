@@ -8,6 +8,6 @@ projects:
     libs:
       - src: Vecnavium/FormsUI/FormsUI
         version: ^1.1.2
-      - src: skymin/bossbar/bossbar
+      - src: skymin/bossbarapi/bossbar
         version: ^1.2.2
 ...
