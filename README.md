@@ -10,11 +10,9 @@ As it everything on the todo list that is ticked is working!
 - bypassnofly.fx (this is a permission to kick hackers)
 ------------
 # Todo & Implemented
-- [X] NickName Support
 - [X] NickName Color Support
 - [X] Fly-Support
 - [ ] Chat-Color Support
-- [ ] LevelSystem Support
 - [X] Commands Support
 - [X] Permissions Support
 - [X] FormAPI Support
@@ -23,8 +21,11 @@ As it everything on the todo list that is ticked is working!
 - [X] LobbyCore
 - [X] BetterBow (like hypixel)
 - [X] AntiVoid
+- [X] Configurable
 - [X] HighPinkKick 
 - [X] AlwaysDay
+- [ ] LobbyBossbar
+- [ ] LobbyScoreboard
 - [ ] DataBase
 - [X] BetterPearl
 - Note : I will add much more features! 1 donation = 1 - 3 new features that will be added asking by the donation (not everything from a donater will be added!)
