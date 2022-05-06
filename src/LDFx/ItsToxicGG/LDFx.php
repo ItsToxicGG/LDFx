@@ -15,6 +15,8 @@ use LDFx\ItsToxicGG\LDUtils\PluginUtils;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
 use pocketmine\entity\Entity;
+use pocketmine\player\GameMode;
+use pocketmine\event\player\PlayerToggleFlightEvent;
 use pocketmine\event\entity\ProjectileHitEntityEvent;
 use pocketmine\entity\projectile\Arrow;
 use pocketmine\event\entity\EntityTeleportEvent;
@@ -422,7 +424,17 @@ class LDFx extends PluginBase implements Listener
 			}
 		}
 	}
-  }	
+  }
+	
+  public function toggleFlight(PlayerToggleFlightEvent $event): void{
+       $player = $event->getPlayer();
+       if ($this->getConfig()->get("ANoFly") === true) {
+           if (!$player->hasPermission("bypassnofly.fx") || ($this->getConfig()->get("ASpectator") === false && $player->getGamemode() === GameMode::SPECTATOR())) {
+               $player->kick($this->getConfig()->get("NoFly-Kick-Message"));
+           }
+       }
+  }
+    
 	
   public function BetterPearl(){
        $this->getServer()->getPluginManager()->registerEvent(ProjectileHitEvent::class, static function (ProjectileHitEvent $event) : void{
