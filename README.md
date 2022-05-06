@@ -1,7 +1,14 @@
 # LDFx
 LDFx is the ultimate essentials plugin for PM4!
 # Does it work?
-As it everything on the todo & implemented list is work
+As it everything on the todo list that is ticked is working!
+# Permissions
+============
+- settings.fx (the fly, nickcolor, etc is stored in here)
+- fly.fx (allow a player to fly if having this permission)
+- nickcolor.fx (allow a player to change there usernames color if they have the permission)
+- bypassnofly.fx (this is a permission to kick hackers)
+------------
 # Todo & Implemented
 - [X] NickName Support
 - [X] NickName Color Support
