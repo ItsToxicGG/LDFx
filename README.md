@@ -26,7 +26,6 @@ As it everything on the todo list that is ticked is working!
 - [X] AlwaysDay
 - [ ] LobbyBossbar
 - [ ] LobbyScoreboard
-- [ ] DataBase
 - [X] BetterPearl
 - Note : I will add much more features! 1 donation = 1 - 3 new features that will be added asking by the donation (not everything from a donater will be added!)
 # SoftDepends
