@@ -21,13 +21,11 @@ class SudoCommand extends Command implements PluginOwned, Listener{
       $this->plugin = $plugin;
     }
 
-    public function execute(CommandSender $sender, Command $cmd, string $label, array $args) : bool {
+    public function execute(CommandSender $sender, string $label, array $args) : bool {
       $prefix = TextFormat::GREEN . "[" . TextFormat::YELLOW . "LDFx" . TextFormat::GREEN . "] ";
       $usage = $this->config->get("usage");
       $notfound = $this->config->get("notfound");
-      switch (strtolower($cmd->getName())) {
-        case "sudo":
-          if (count($args) < 2) {
+         if (count($args) < 2) {
             $sender->sendMessage($prefix . $usage);
             return true;
         }
