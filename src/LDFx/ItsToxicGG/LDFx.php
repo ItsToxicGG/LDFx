@@ -31,6 +31,7 @@ use pocketmine\event\player\PlayerExhaustEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerItemUseEvent;
 use pocketmine\player\Player;
+use pocketmine\event\inventory\CraftItemEvent;
 use pocketmine\event\EventPriority;
 use pocketmine\event\entity\ProjectileHitEvent;
 use pocketmine\entity\projectile\EnderPearl;
@@ -381,6 +382,23 @@ class LDFx extends PluginBase implements Listener
 			$event->cancel();
 		}
 	}
+  }
+	
+  public function onCraft(CraftItemEvent $event){
+       $config = $this->getConfig();
+       $player = $event->getPlayer();
+       if($config->get("all") === true){
+         $event->cancel();
+         $player->sendMessage($config->get("cancel-msg"));
+       }
+       foreach ($event->getOutputs() as $item){
+         foreach($this->getConfig()->get("nocraft") as $name){
+           if($item->equals(StringToItemParser::getInstance()->parse($name), true)){
+             $event->cancel();
+             $player->sendMessage($config->get("cancel-msg"));
+           }
+         } 
+       }
   }
 	
   public function onSprint(PlayerBedEnterEvent $event){
