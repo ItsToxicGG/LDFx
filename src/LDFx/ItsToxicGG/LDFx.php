@@ -106,6 +106,38 @@ class LDFx extends PluginBase implements Listener
   public function onDiable(): void{
       $this->getLogger()->info("§cDisabled LDFx");
   }
+	
+  public function MaintenaceForm($player){
+       $form = new SimpleForm(function(Player $player, int $data = null){
+            if($data === null){
+                return true;
+            }
+            switch($data){
+                case 0:
+                        $this->getConfig()->set("MM_Active", true);
+                        $this->getConfig()->save();
+                        $sender->sendMessage("§aMaintenace has been enabled!");
+                break;
+            
+                case 1:
+                        $this->getConfig()->set("MM_Active", false);
+                        $this->getConfig()->save();
+                        $sender->sendMessage("§aMaintenace is disabled!");
+                break;
+			  
+		case 2:
+	            $player->sendMessage("§aYou Have Left The Form!");
+	        break;
+            }
+       });
+       $form->setTitle("§bMaintenace");
+       $form->setContent("§fPick THe Setting!");
+       $form->addButton("§aEnable Mainteance");
+       $form->addButton("§cDisable Maintenace");
+       $form->addButton("§cEXIT");
+       $form->sendToPlayer($player);
+       return $form;
+  }	
   
   public function SettingsForm($player){
        $form = new SimpleForm(function(Player $player, int $data = null){
@@ -125,7 +157,9 @@ class LDFx extends PluginBase implements Listener
 			
 		case 2:
 		    $this->getServer()->getCommandMap()->dispatch($player, "nick");
-		    $player->sendMessage("§aYou Have Left the Settings to NickNames!");	    
+		    $player->sendMessage("§aYou Have Left the Settings to NickNames!");	  
+	        break;
+			    
 		case 3:
 	            $player->sendMessage("§aYou Have Left The Form!");
 	        break;
