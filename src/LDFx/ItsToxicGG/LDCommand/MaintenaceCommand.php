@@ -20,13 +20,13 @@ class MaintenaceCommand extends Command implements PluginOwned{
         $this->plugin = $plugin;
     }
 
-    public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool{
+    public function execute(CommandSender $sender, string $label, array $args): bool{
         if (!$sender->hasPermission("maintenancemodecmd.fx")){
             $sender->sendMessage("§cYou don't have permissions to use this command");
             return true;
         }
         if (!isset($args[0])){
-            $sender->sendMessage("§cUsage: §a/mm on | off");
+            $sender->sendMessage("§cUsage: §a/maintenace on | off");
             return true;
         }
         switch($command->getName()){
