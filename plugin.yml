@@ -17,3 +17,6 @@ permissions:
   nicknames.fx:
     description: /nickname
     default: op
+  sudo.fx:
+    description: "Permission to sudo a player!"
+    default: op
