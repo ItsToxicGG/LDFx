@@ -21,6 +21,7 @@ use pocketmine\player\GameMode;
 use pocketmine\event\player\PlayerToggleFlightEvent;
 use pocketmine\event\entity\ProjectileHitEntityEvent;
 use pocketmine\entity\projectile\Arrow;
+use pocketmine\item\StringToItemParser;
 use pocketmine\event\entity\EntityTeleportEvent;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
@@ -116,17 +117,17 @@ class LDFx extends PluginBase implements Listener
                 case 0:
                         $this->getConfig()->set("MM_Active", true);
                         $this->getConfig()->save();
-                        $sender->sendMessage("§aMaintenace has been enabled!");
+                        $player->sendMessage("§aMaintenace has been enabled!");
                 break;
             
                 case 1:
                         $this->getConfig()->set("MM_Active", false);
                         $this->getConfig()->save();
-                        $sender->sendMessage("§aMaintenace is disabled!");
+                        $player->sendMessage("§aMaintenace is disabled!");
                 break;
 			  
 		case 2:
-	            $player->sendMessage("§aYou Have Left The Form!");
+	                $player->sendMessage("§aYou Have Left The Form!");
 	        break;
             }
        });
