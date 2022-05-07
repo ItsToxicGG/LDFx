@@ -16,6 +16,7 @@ use LDFx\ItsToxicGG\LDFx;
 class SudoCommand extends Command implements PluginOwned, Listener{
 
     private $plugin;
+    public $config;
 
     public function __construct(LDFx $plugin){
       $this->plugin = $plugin;
