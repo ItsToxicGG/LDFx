@@ -24,16 +24,13 @@ class SocialMenuCommand extends Command implements PluginOwned, Listener{
     }
 
     public function execute(CommandSender $sender, string $commandLabel, array $args){
-        $usage = $this->plugin->config->get("usage");
         $notfound = $this->plugin->config->get("notfound");
         if(count($args) == 0){
-           case "sudo":
-             if (count($args) < 2) {
-               $sender->sendMessage($prefix . $usage);
-               return true;
-            }
-            $player = $this->getServer()->getPlayerExact(array_shift($args));
-            if ($player instanceof Player) {
+           $sender->sendMessage($usage);
+           return true;
+        }
+           $player = $this->getServer()->getPlayerExact(array_shift($args));
+           if ($player instanceof Player) {
             $player->chat(trim(implode(" ", $args))); //$this->getServer()->dispatchCommand($player, trim(implode(" ", $args)));
         } else {
             $sender->sendMessage($notfound);
