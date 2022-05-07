@@ -14,7 +14,7 @@ use pocketmine\utils\TextFormat;
 
 use LDFx\ItsToxicGG\LDFx;
 
-class SudoCommand extends Command implements PluginOwned, Listener{
+class SudoCommand extends Command implements Listener, PluginOwned{
 
     private $plugin;
     public $config;
