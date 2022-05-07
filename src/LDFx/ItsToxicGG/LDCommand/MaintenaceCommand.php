@@ -18,32 +18,18 @@ class MaintenaceCommand extends Command implements PluginOwned{
 
     public function __construct(LDFx $plugin){
         $this->plugin = $plugin;
+        
+        parent::__construct("maintenace", "§r§fEnable Maintenace Or Disable using a ui/form, Plugin By ItsToxicGG", "§cUse: /maintenace", ["maintenace"]);
+        $this->setPermission("maintenace.fx");
     }
 
-    public function execute(CommandSender $sender, string $label, array $args): bool{
-        if (!$sender->hasPermission("maintenancemodecmd.fx")){
-            $sender->sendMessage("§cYou don't have permissions to use this command");
-            return true;
-        }
-        if (!isset($args[0])){
-            $sender->sendMessage("§cUsage: §a/maintenace on | off");
-            return true;
-        }
+    public function execute(CommandSender $sender, string $commandLabel, array $args){
         if(count($args) == 0){
-            case "maintenace":
-                switch (strtolower($args[0])){
-                    case "on":
-                        $this->plugin->config->set("MM_Active", true);
-                        $this->plugin->config->save();
-                        $sender->sendMessage("§aThe Server is now on Maintenace");
-                    break;
-                    case "off":
-                        $this->plugin->config->set("MM_Active", false);
-                        $this->plugin->config->save();
-                        $sender->sendMessage("§aMaintenace is off now");
-                    break;
-                }
-
+            if($sender instanceof Player) {
+                $this->plugin->MaintenaceForm($sender);
+            } else {
+                $sender->sendMessage("Use this command in-game");
+            }
         }
         return true;
     }
