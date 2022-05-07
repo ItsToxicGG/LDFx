@@ -47,6 +47,7 @@ use pocketmine\command\ConsoleCommandSender;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\inventory\InventoryTransactionEvent;
 use pocketmine\network\mcpe\protocol\PlaySoundPacket;
+use pocketmine\event\player\PlayerBedEnterEvent;
 use pocketmine\utils\Config;
 // FORM
 use Vecnavium\FormsUI\CustomForm;
