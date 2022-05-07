@@ -10,6 +10,7 @@ use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\plugin\PluginOwned;
 use pocketmine\event\Listener;
+use pocketmine\utils\TextFormat;
 
 use LDFx\ItsToxicGG\LDFx;
 
@@ -24,8 +25,8 @@ class SudoCommand extends Command implements PluginOwned, Listener{
 
     public function execute(CommandSender $sender, string $label, array $args) : bool {
       $prefix = TextFormat::GREEN . "[" . TextFormat::YELLOW . "LDFx" . TextFormat::GREEN . "] ";
-      $usage = $this->config->get("usage");
-      $notfound = $this->config->get("notfound");
+      $usage = $this->plugin->config->get("usage");
+      $notfound = $this->plugin->config->get("notfound");
       if (count($args) < 2) {
         $sender->sendMessage($prefix . $usage);
         return true;
