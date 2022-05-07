@@ -13,7 +13,7 @@ use pocketmine\event\Listener;
 
 use LDFx\ItsToxicGG\LDFx;
 
-class SocialMenuCommand extends Command implements PluginOwned, Listener{
+class SudoCommand extends Command implements PluginOwned, Listener{
 
     private $plugin;
 
