@@ -1,5 +1,8 @@
 # LDFx
 LDFx is the ultimate essentials plugin for PM4!
+LDFx is Also Known as a Core Because theres alot of Features!
+# Status
+- In-Beta (some things that are will be implemenets still is the new permissions and add the new config)
 # Does it work?
 As it everything on the todo list that is ticked is working!
 # Permissions
@@ -26,7 +29,8 @@ As it everything on the todo list that is ticked is working!
 - [X] AlwaysDay
 - [X] NoHunger
 - [X] NoSleep
-- [ ] Sudo
+- [X] Sudo
+- [X] Maintenace
 - [ ] LobbyBossbar
 - [ ] LobbyScoreboard
 - [X] BetterPearl (Credits to: ItzLucky & Sky-min:D)
