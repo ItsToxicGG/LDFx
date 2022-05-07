@@ -17,9 +17,6 @@ permissions:
   nicknames.fx:
     description: "/nickname"
     default: op
-  sudo.fx:
-    description: "/sudo"
-    default: op
   maintenace.fx:
     description: "/maintenace"
     default: op
