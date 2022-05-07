@@ -6,17 +6,24 @@ api: 4.0.0
 
 permissions:
   settings.fx:
-    description: /settings 
+    description: "/settings" 
     default: op
   fly.fx:
-    description: /fly
+    description: "/fly"
     default: op   
   nickcolor.fx:
-    description: /nickcolor
+    description: "/nickcolor"
     default: op
   nicknames.fx:
-    description: /nickname
+    description: "/nickname"
     default: op
   sudo.fx:
-    description: "Permission to sudo a player!"
+    description: "/sudo"
     default: op
+  maintenace.fx:
+    description: "/maintenace"
+    default: op
+  bypassmaintenace.fx:
+    description: "bypass maintenace, for staff, mods, etc."
+    default: op
+  
