@@ -8,6 +8,7 @@
 # - FD => FlyDisable
 # - A => Allow
 # - Fx => (does not have a meaning)
+# - LC => LobbyCore
 # ----------
 # Fly-Config
   # The below config allows the plugin to reset flight mode when joining the server
@@ -59,6 +60,17 @@ NoFly-Kick-Message: "You Have been kicked, Reason: Fly Hacks"
 cooldown: 5
 message: "you must wait {cooldown}s to use an enderpearl again!"
 # EndOfEnderPearlCoolDown-Config
+# Maintenace-Config
+MM-Active: false
+MM-Message: "§cThis Server is Currently in Maintenace, Try Again Later!"
+# EndOfMaintenace-Config
+# NoCraft-Config
+nocraft: true
+cancel-msg: "§cYou Can Not Craft Items!"
+# EndOfNoCraft-Config
+# NoSleep-Config
+No-Sleep-Message: true
+NSleepMessage: "§cYou Can Not Sleep!"
 # LobbyCore-Config
   #Items 1 | Compass
   item1-name: "§r§cReport Player" # Name Items
@@ -71,6 +83,12 @@ message: "you must wait {cooldown}s to use an enderpearl again!"
   #Items 4 | Enchanted Book
   item3-name: "§r§dSocial Menu §7[Use]" # Name Items
   item3-cmd: "socialmenu" # Your Commands
+# Else:
+ LC-MW: true
+ 
+ LC-Worlds:
+ - "world"
+ - "lobby"
 # EndOfLobbyCore-Config
 # GameUI-Config
   #GameUI-1
