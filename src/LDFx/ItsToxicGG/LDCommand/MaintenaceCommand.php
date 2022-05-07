@@ -29,7 +29,7 @@ class MaintenaceCommand extends Command implements PluginOwned{
             $sender->sendMessage("§cUsage: §a/maintenace on | off");
             return true;
         }
-        switch($command->getName()){
+        if(count($args) == 0){
             case "maintenace":
                 switch (strtolower($args[0])){
                     case "on":
