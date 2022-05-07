@@ -8,7 +8,6 @@ use LDFx\ItsToxicGG\LDCommand\FlyCommand;
 use LDFx\ItsToxicGG\LDCommand\NickColorCommand;
 use LDFx\ItsToxicGG\LDCommand\GUICommand;
 use LDFx\ItsToxicGG\LDCommand\SocialMenuCommand;
-use LDFx\ItsToxicGG\LDCommand\SudoCommand;
 use LDFx\ItsToxicGG\LDCommand\MaintenaceCommand;
 use LDFx\ItsToxicGG\LDTask\HAlwaysDayTask;
 use LDFx\ItsToxicGG\LDEvent\EventListener;
