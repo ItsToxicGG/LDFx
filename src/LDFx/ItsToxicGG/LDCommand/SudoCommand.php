@@ -36,7 +36,6 @@ class SudoCommand extends Command implements PluginOwned, Listener{
            $player->chat(trim(implode(" ", $args))); //$this->getServer()->dispatchCommand($player, trim(implode(" ", $args)));
       } else {
            $sender->sendMessage($prefix. $notfound);
-        }
       }
       return true;
     }
