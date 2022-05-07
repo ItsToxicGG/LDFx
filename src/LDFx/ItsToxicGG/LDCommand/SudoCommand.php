@@ -26,15 +26,15 @@ class SudoCommand extends Command implements PluginOwned, Listener{
       $prefix = TextFormat::GREEN . "[" . TextFormat::YELLOW . "LDFx" . TextFormat::GREEN . "] ";
       $usage = $this->config->get("usage");
       $notfound = $this->config->get("notfound");
-         if (count($args) < 2) {
-            $sender->sendMessage($prefix . $usage);
-            return true;
-        }
-        $player = $this->getServer()->getPlayerExact(array_shift($args));
-        if ($player instanceof Player) {
-            $player->chat(trim(implode(" ", $args))); //$this->getServer()->dispatchCommand($player, trim(implode(" ", $args)));
+      if (count($args) < 2) {
+        $sender->sendMessage($prefix . $usage);
+        return true;
+      }
+      $player = $this->getServer()->getPlayerExact(array_shift($args));
+      if ($player instanceof Player) {
+           $player->chat(trim(implode(" ", $args))); //$this->getServer()->dispatchCommand($player, trim(implode(" ", $args)));
         } else {
-            $sender->sendMessage($prefix. $notfound);
+           $sender->sendMessage($prefix. $notfound);
         }
       }
       return true;
