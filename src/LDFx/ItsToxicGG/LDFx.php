@@ -326,6 +326,14 @@ class LDFx extends PluginBase implements Listener
 	}
   }
 	
+  public function onLoginEvent(PlayerLoginEvent $event) : void{
+        $player = $event->getPlayer();
+
+        if ($this->getConfig()->get("MM-Active") === true && !$player->hasPermission("bypassmaintenace.fx")){
+            $player->kick($this->getConfig()->get("MM_Message"), false);
+        }
+  }
+	
   public function onClick(PlayerInteractEvent $event){
         $player = $event->getPlayer();
         $itn = $player->getInventory()->getItemInHand()->getCustomName();
