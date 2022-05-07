@@ -21,7 +21,7 @@ class SudoCommand extends Command implements PluginOwned, Listener{
       $this->plugin = $plugin;
     }
 
-    public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool {
+    public function execute(CommandSender $sender, Command $cmd, string $label, array $args) : bool {
       $prefix = TextFormat::GREEN . "[" . TextFormat::YELLOW . "LDFx" . TextFormat::GREEN . "] ";
       $usage = $this->config->get("usage");
       $notfound = $this->config->get("notfound");
