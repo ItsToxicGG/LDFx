@@ -10,6 +10,7 @@ use LDFx\ItsToxicGG\LDCommand\GUICommand;
 use LDFx\ItsToxicGG\LDCommand\SocialMenuCommand;
 use LDFx\ItsToxicGG\LDTask\HAlwaysDayTask;
 use LDFx\ItsToxicGG\LDEvent\EventListener;
+use pocketmine\event\player\PlayerExhaustEvent;
 use LDFx\ItsToxicGG\LDUtils\PluginUtils;
 // POCKETMINE
 use pocketmine\plugin\PluginBase;
@@ -332,6 +333,10 @@ class LDFx extends PluginBase implements Listener
  public function onInventory(InventoryTransactionEvent $event){
       $event->cancel();
  }
+	
+ public function onExhaust(PlayerExhaustEvent $event){     
+      $event->cancel();
+ } 
 
   public function onLevelChange(EntityTeleportEvent $event) : void{
 	$entity = $event->getEntity();
