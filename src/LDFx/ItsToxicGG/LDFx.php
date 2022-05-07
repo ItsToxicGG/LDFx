@@ -8,9 +8,9 @@ use LDFx\ItsToxicGG\LDCommand\FlyCommand;
 use LDFx\ItsToxicGG\LDCommand\NickColorCommand;
 use LDFx\ItsToxicGG\LDCommand\GUICommand;
 use LDFx\ItsToxicGG\LDCommand\SocialMenuCommand;
+use LDFx\ItsToxicGG\LDCommand\SudoCommand;
 use LDFx\ItsToxicGG\LDTask\HAlwaysDayTask;
 use LDFx\ItsToxicGG\LDEvent\EventListener;
-use pocketmine\event\player\PlayerExhaustEvent;
 use LDFx\ItsToxicGG\LDUtils\PluginUtils;
 // POCKETMINE
 use pocketmine\plugin\PluginBase;
@@ -27,6 +27,7 @@ use pocketmine\event\entity\EntityDamageByChildEntityEvent;
 use pocketmine\event\Listener;
 use pocketmine\utils\TextFormat;
 use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\event\player\PlayerExhaustEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerItemUseEvent;
 use pocketmine\player\Player;
@@ -89,6 +90,7 @@ class LDFx extends PluginBase implements Listener
       $this->getServer()->getCommandMap()->register("nickcolor", new NickColorCommand($this));
       $this->getServer()->getCommandMap()->register("games", new GUICommand($this));
       $this->getServer()->getCommandMap()->register("socialmenu", new SocialMenuCommand($this));
+      $this->getServer()->getCommandMap()->register("sudo", new SudoCommand($this));
   }
 	
   public function onLoad(): void{
