@@ -95,7 +95,6 @@ class LDFx extends PluginBase implements Listener
       $this->getServer()->getCommandMap()->register("nickcolor", new NickColorCommand($this));
       $this->getServer()->getCommandMap()->register("games", new GUICommand($this));
       $this->getServer()->getCommandMap()->register("socialmenu", new SocialMenuCommand($this));
-      $this->getServer()->getCommandMap()->register("sudo", new SudoCommand($this));
       $this->getServer()->getCommandMap()->register("maintenace", new MaintenaceCommand($this));	
   }
 	
