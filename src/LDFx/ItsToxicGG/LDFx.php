@@ -77,6 +77,7 @@ class LDFx extends PluginBase implements Listener
       $this->getScheduler()->scheduleRepeatingTask(new HAlwaysDayTask(), 40);
       @mkdir($this->getDataFolder());
       $this->saveDefaultConfig();
+      $this->reloadConfig();
       $this->enabledWorlds = $this->getConfig()->get("enabled-worlds");
       $this->disabledWorlds = $this->getConfig()->get("disabled-worlds");
       $this->useDefaultWorld = $this->getConfig()->get("use-default-world");
@@ -88,6 +89,11 @@ class LDFx extends PluginBase implements Listener
       $this->getServer()->getCommandMap()->register("nickcolor", new NickColorCommand($this));
       $this->getServer()->getCommandMap()->register("games", new GUICommand($this));
       $this->getServer()->getCommandMap()->register("socialmenu", new SocialMenuCommand($this));
+  }
+	
+  public function onLoad(): void{
+      $this->getLogger()->info("§6Loading LDFx");
+      $this->reloadConfig();
   }
   
   public function onDiable(): void{
@@ -372,6 +378,13 @@ class LDFx extends PluginBase implements Listener
 			$event->cancel();
 		}
 	}
+  }
+	
+  public function onSprint(PlayerBedEnterEvent $event){
+        $event->cancel();
+        if($this->getConfig()->get("No-Sleep-Message") == true){
+            $event->getPlayer()->sendMessage($this->getConfig()->get("NSleepMessage"));
+        }
   }
 
   private function saveFromVoidAllowed(World $world) : bool {
