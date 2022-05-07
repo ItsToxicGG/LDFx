@@ -9,6 +9,7 @@ use LDFx\ItsToxicGG\LDCommand\NickColorCommand;
 use LDFx\ItsToxicGG\LDCommand\GUICommand;
 use LDFx\ItsToxicGG\LDCommand\SocialMenuCommand;
 use LDFx\ItsToxicGG\LDCommand\SudoCommand;
+use LDFx\ItsToxicGG\LDCommand\MaintenaceCommand;
 use LDFx\ItsToxicGG\LDTask\HAlwaysDayTask;
 use LDFx\ItsToxicGG\LDEvent\EventListener;
 use LDFx\ItsToxicGG\LDUtils\PluginUtils;
@@ -30,6 +31,7 @@ use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerExhaustEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerItemUseEvent;
+use pocketmine\event\player\PlayerLoginEvent;
 use pocketmine\player\Player;
 use pocketmine\event\inventory\CraftItemEvent;
 use pocketmine\event\EventPriority;
@@ -93,6 +95,7 @@ class LDFx extends PluginBase implements Listener
       $this->getServer()->getCommandMap()->register("games", new GUICommand($this));
       $this->getServer()->getCommandMap()->register("socialmenu", new SocialMenuCommand($this));
       $this->getServer()->getCommandMap()->register("sudo", new SudoCommand($this));
+      $this->getServer()->getCommandMap()->register("maintenace", new MaintenaceCommand($this));	
   }
 	
   public function onLoad(): void{
