@@ -18,7 +18,7 @@ As it everything on the todo list that is ticked is working!
 - [X] FormAPI Support
 - [X] Pay-Pal Link
 - [X] CustomKnockBack
-- [X] LobbyCore
+- [X] LobbyCore (Credits to A person who made this plugin orignally in pm3 i switched it to pm4:D)
 - [X] BetterBow (like hypixel)
 - [X] AntiVoid
 - [X] Configurable
@@ -26,7 +26,7 @@ As it everything on the todo list that is ticked is working!
 - [X] AlwaysDay
 - [ ] LobbyBossbar
 - [ ] LobbyScoreboard
-- [X] BetterPearl
+- [X] BetterPearl (Credits to: ItzLucky & Sky-min:D)
 - Note : I will add much more features! 1 donation = 1 - 3 new features that will be added asking by the donation (not everything from a donater will be added!)
 # SoftDepends
 - PartySystem (need for lobbycore)
