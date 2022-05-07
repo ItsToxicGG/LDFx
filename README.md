@@ -25,6 +25,8 @@ As it everything on the todo list that is ticked is working!
 - [X] HighPinkKick 
 - [X] AlwaysDay
 - [X] NoHunger
+- [ ] NoSleep
+- [ ] Sudo
 - [ ] LobbyBossbar
 - [ ] LobbyScoreboard
 - [X] BetterPearl (Credits to: ItzLucky & Sky-min:D)
