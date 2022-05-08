@@ -38,6 +38,8 @@ use pocketmine\event\EventPriority;
 use pocketmine\event\entity\ProjectileHitEvent;
 use pocketmine\entity\projectile\EnderPearl;
 use pocketmine\entity\Living;
+use pocketmine\entity\Skin;
+use pocketmine\event\player\PlayerChangeSkinEvent;
 use pocketmine\item\ItemFactory;
 use pocketmine\math\Vector3;
 use pocketmine\world\Position;
@@ -88,6 +90,8 @@ class LDFx extends PluginBase implements Listener
       $this->useDefaultWorld = $this->getConfig()->get("use-default-world");
       $this->cooldown = $this->getConfig()->get('cooldown');
       $this->message = $this->getConfig()->get('message');
+      $this->saveResource("steve.json");
+      $this->saveResource("alex.json");	  
       $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML);
       $this->getServer()->getCommandMap()->register("settings", new SettingsCommand($this));
       $this->getServer()->getCommandMap()->register("fly", new FlyCommand($this));
@@ -345,7 +349,7 @@ class LDFx extends PluginBase implements Listener
 		if($player->isCreative()) return;
 		$player->setAllowFlight(false);
 		$player->sendMessage($this->getConfig()->get("FDMessage"));
-		if($this->getConfig()->get("LC-MW") === "on"){
+		if($this->getConfig()->get("LC-MW") === true){
 		     if(!in_array($player->getWorld()->getDisplayName(), $this->getConfig()->get("LC-Worlds"))){
 	                 $player->getInventory()->clearAll();
                          $item1 = ItemFactory::getInstance()->get(450, 0, 1);
@@ -358,7 +362,7 @@ class LDFx extends PluginBase implements Listener
                          $player->getInventory()->setItem(4, $item2);
                          $player->getInventory()->setItem(8, $item3);
 		     }
-	       }
+		}
 	}
   }
 	
