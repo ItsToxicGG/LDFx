@@ -90,8 +90,6 @@ class LDFx extends PluginBase implements Listener
       $this->useDefaultWorld = $this->getConfig()->get("use-default-world");
       $this->cooldown = $this->getConfig()->get('cooldown');
       $this->message = $this->getConfig()->get('message');
-      $this->saveResource("steve.json");
-      $this->saveResource("alex.json");	  
       $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML);
       $this->getServer()->getCommandMap()->register("settings", new SettingsCommand($this));
       $this->getServer()->getCommandMap()->register("fly", new FlyCommand($this));
