@@ -68,8 +68,10 @@ MM-Message: "§cThis Server is Currently in Maintenace, Try Again Later!"
 nocraft: true
 cancel-msg: "§cYou Can Not Craft Items!"
 # EndOfNoCraft-Config
-# NoSleep-Config
-No-Sleep-Message: true
+# KnockBack-Config
+Knockback: 1.9
+# EndOfKnockBack-Config
+# NoSleep-Config-true
 NSleepMessage: "§cYou Can Not Sleep!"
 # LobbyCore-Config
   #Items 1 | Compass
