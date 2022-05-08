@@ -412,7 +412,7 @@ class LDFx extends PluginBase implements Listener
   public function onEntityDamageEventByEntity(EntityDamageByEntityEvent $event): void{
 	$damager = $event->getDamager();
 	if(!$event instanceof EntityDamageByChildEntityEvent and $damager instanceof Living and $damager->isSprinting()){
-		$event->setKnockback(1.9*$event->getKnockback());
+		$event->setKnockback($this->config->get("KnockBack")*$event->getKnockback());
 		$damager->setSprinting(false);
 	}
   }
