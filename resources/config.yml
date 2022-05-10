@@ -3,6 +3,13 @@
 # LDFxConfig V1.0
 # BY ITSTOXICGG
 # ----------
+# Word Meanings:
+# - J => Join
+# - FD => FlyDisable
+# - A => Allow
+# - Fx => (does not have a meaning)
+# - LC => LobbyCore
+# ----------
 # Fly-Config
   # The below config allows the plugin to reset flight mode when joining the server
   JFlyReset: true
@@ -14,18 +21,68 @@
   worlds:
   - "world"
 # EndOfFlyConfig
+# Ping-Config
+  tps-check: 20
+  #Choose the ping of when a player should be kicked, (I recommend you put it above 2000)
+  ping-kick: 2005
+  #Choose the kick message when a player is kicked for exceeding the ping limit
+  kick-message: "§7You were kicked, this was caused by high ping!"
+# EndOfPing-Config
+# Bow-Config
+  enable-sound: true # Enable sound ?
+  sound-volume: 1
+  sound-pitch: 1
+  sound-name: "random.orb"
+  enable-message: true # Enable message ?
+  hit-message: "§c{name} §7(§aHP: §e{hp}§7)"
+ 
+  enable-popup: false  # Enable popup ?
+  hit-popup: "§c{name} §7(§aHP: §e{hp}§7)"
+  enable-tip: false  # Enable tip ?
+  hit-tip: "§c{name} §7(§aHP: §e{hp}§7)"
+# EndOfBow-Config
+# AntiVoid-Config
+  enabled-worlds: []
+  disabled-worlds: []
+  use-default-world: false
+# EndOfAntiVoid-Config
+# NoFly-Config
+ANoFly: True
+ASpectator: True
+NoFly-Kick-Message: "You Have been kicked, Reason: Fly Hacks"
+# EnderPearlCoolDown-Config
+cooldown: 5
+message: "you must wait {cooldown}s to use an enderpearl again!"
+# EndOfEnderPearlCoolDown-Config
+# Maintenace-Config
+MM-Active: false
+MM-Message: "§cThis Server is Currently in Maintenace, Try Again Later!"
+# EndOfMaintenace-Config
+# NoCraft-Config
+nocraft: true
+cancel-msg: "§cYou Can Not Craft Items!"
+# EndOfNoCraft-Config
+# KnockBack-Config
+Knockback: 1.9
+# EndOfKnockBack-Config
+# NoSleep-Config-true
+NSleepMessage: "§cYou Can Not Sleep!"
 # LobbyCore-Config
   #Items 1 | Compass
   item1-name: "§r§cReport Player" # Name Items
   item1-cmd: "report" # Your Commands
-
   #Items 2 | Name Tag
   item2-name: "§r§aTeleporter" # Name Items
   item2-cmd: "gui" # Your Commands
-
   #Items 4 | Enchanted Book
   item3-name: "§r§dSocial Menu §7[Use]" # Name Items
   item3-cmd: "socialmenu" # Your Commands
+# Else:
+ LC-MW: true
+ 
+ LC-Worlds:
+ - "world"
+ - "lobby"
 # EndOfLobbyCore-Config
 # GameUI-Config
   #GameUI-1
