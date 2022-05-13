@@ -126,6 +126,7 @@ class LDFx extends PluginBase implements Listener
             }
 		$this->saveDefaultConfig();
 	} 
+      }
   }
 	
   public function onLoad(): void{
