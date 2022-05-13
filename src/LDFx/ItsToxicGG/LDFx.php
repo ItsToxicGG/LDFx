@@ -100,7 +100,7 @@ class LDFx extends PluginBase implements Listener
       $this->getServer()->getCommandMap()->register("games", new GUICommand($this));
       $this->getServer()->getCommandMap()->register("socialmenu", new SocialMenuCommand($this));
       $this->getServer()->getCommandMap()->register("maintenace", new MaintenaceCommand($this));	
-      if (!isset($maxDistance)){
+        if (!isset($maxDistance)){
             $log->info("Max Distance cant be blank!");
             $config->set("max-distance", 8);
             return;
@@ -110,23 +110,22 @@ class LDFx extends PluginBase implements Listener
             $config->set("max-distance", 8);
             return;
        } 
-        if ($config->get("max-distance") < 4){
+       if ($config->get("max-distance") < 4){
             $log->info(TextFormat::RED."Your max distance is too low. Make sure your max-distance in config is not at least higher on 4!");
             $log->info("[INFO] Max-Distance was changed to 16 as default.");
             $config->set("max-distance", 8);
             return;
         }
-            if ($toggle == true){
+        if ($toggle == true){
             $this->getServer()->getPluginManager()->registerEvents(new SlapperListener($this), $this);
             return;
             }
             
-            if ($toggle == false){
+        if ($toggle == false){
                 $log->warning("The SlapperRotation is disabled by configuration.");
             }
 		$this->saveDefaultConfig();
 	} 
-      }
   }
 	
   public function onLoad(): void{
