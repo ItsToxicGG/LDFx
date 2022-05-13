@@ -78,6 +78,9 @@ class LDFx extends PluginBase implements Listener
   private $useDefaultWorld = false; 
  
   public function onEnable(): void{
+      $config = $this->getConfig(); 
+      $maxDistance = $this->getConfig()->get("max-distance");
+      $toggle = $this->getConfig()->get("enabled");
       $this->getLogger()->info("§aEnabled LDFx");
       $this->getServer()->getPluginManager()->registerEvents($this, $this); 
       $this->BetterPearl();
@@ -97,11 +100,46 @@ class LDFx extends PluginBase implements Listener
       $this->getServer()->getCommandMap()->register("games", new GUICommand($this));
       $this->getServer()->getCommandMap()->register("socialmenu", new SocialMenuCommand($this));
       $this->getServer()->getCommandMap()->register("maintenace", new MaintenaceCommand($this));	
+      if (!isset($maxDistance)){
+            $log->info("Max Distance cant be blank!");
+            $config->set("max-distance", 8);
+            return;
+        }
+        if (!is_int($config->get("max-distance"))){
+            $log->info("Max Distance is not string or bool. Please provide it as integer!");
+            $config->set("max-distance", 8);
+            return;
+       } 
+        if ($config->get("max-distance") < 4){
+            $log->info(TextFormat::RED."Your max distance is too low. Make sure your max-distance in config is not at least higher on 4!");
+            $log->info("[INFO] Max-Distance was changed to 16 as default.");
+            $config->set("max-distance", 8);
+            return;
+        }
+            if ($toggle == true){
+            $this->getServer()->getPluginManager()->registerEvents(new SlapperListener($this), $this);
+            return;
+            }
+            
+            if ($toggle == false){
+                $log->warning("The SlapperRotation is disabled by configuration.");
+            }  
   }
 	
   public function onLoad(): void{
       $this->getLogger()->info("§6Loading LDFx");
       $this->reloadConfig();
+      $this->saveResource("config.yml");
+      $config = $this->getConfig();
+      $log = $this->getLogger();
+      $version = "2.0.0";
+      if ($config->get("config-version") == $version){
+           return;
+      } else {
+          $log->notice("Your LDFx config is outdated!");
+          $log->info("Your old config.yml was renamed to old-config.yml!");
+          @rename($this->getDataFolder(). 'config.yml', 'old-config.yml');
+          $this->saveResource("config.yml");
   }
   
   public function onDiable(): void{
