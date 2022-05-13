@@ -2,7 +2,7 @@
 LDFx is the ultimate essentials plugin for PM4!
 LDFx is Also Known as a Core Because theres alot of Features!
 # Status
-- In-Beta (some things that are will be implemenets still is the new permissions and add the new config)
+- In-Beta
 # Does it work?
 As it everything on the todo list that is ticked is working!
 # Permissions
@@ -31,17 +31,19 @@ As it everything on the todo list that is ticked is working!
 - [X] NoSleep
 - [X] Sudo
 - [X] Maintenace
+- [ ] SlapperAssets
 - [ ] LobbyBossbar
 - [ ] LobbyScoreboard
 - [X] BetterPearl (Credits to: ItzLucky & Sky-min:D)
 - Note : I will add much more features! 1 donation = 1 - 3 new features that will be added asking by the donation (not everything from a donater will be added!)
-# SoftDepends
-- PartySystem (need for lobbycore)
-- ReportSystem (need for lobbycore)
-- FriendSystem (need for lobbycore)
+# SoftDepends & Depends :
+- PartySystem (need for lobbycore) (softdepend)
+- ReportSystem (need for lobbycore) (softdepend)
+- FriendSystem (need for lobbycore) (softdepend)
+- Slapper (depend) might be a softdepend..
 # Branches:
-PM5 // NOTE: PM5 IS NOT READY AND STILL HAS THE PM4 FILES
-In-Dev // THE BRANCH FOR DEV VERSION LIKE 1.5 WILL BE FIRST IMPLEMENTED IN IN-DEV THEN PULL-REQUEST -> FIX BUGS -> CLEAR PHPSTANS -> PULL THE REQUEST BUTTON
+PM5 // NOTE: PM5 Is Still In-Dev.
+In-Dev // New Versions Are Worked on.
 # Support
 Donate to me by sending money to my paypal:
 
