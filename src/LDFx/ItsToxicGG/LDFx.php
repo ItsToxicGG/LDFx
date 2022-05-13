@@ -123,7 +123,9 @@ class LDFx extends PluginBase implements Listener
             
             if ($toggle == false){
                 $log->warning("The SlapperRotation is disabled by configuration.");
-            }  
+            }
+		$this->saveDefaultConfig();
+	} 
   }
 	
   public function onLoad(): void{
