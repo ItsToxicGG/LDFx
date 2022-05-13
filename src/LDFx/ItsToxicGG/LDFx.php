@@ -116,13 +116,14 @@ class LDFx extends PluginBase implements Listener
            $config->set("max-distance", 8);
            return;
       }
-       if ($toggle == true){
+           if ($toggle == true){
            $this->getServer()->getPluginManager()->registerEvents(new SlapperListener($this), $this);
            return;
-       }
-            
-       if ($toggle == false){
-           $log->warning("The SlapperRotation is disabled by configuration.");
+           }    
+	  
+           if ($toggle == false){
+               $log->warning("The SlapperRotation is disabled by configuration.");
+	   }
 	   $this->saveDefaultConfig();
        } 
   }
