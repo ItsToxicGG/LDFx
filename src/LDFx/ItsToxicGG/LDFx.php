@@ -100,6 +100,7 @@ class LDFx extends PluginBase implements Listener
       $this->getServer()->getCommandMap()->register("games", new GUICommand($this));
       $this->getServer()->getCommandMap()->register("socialmenu", new SocialMenuCommand($this));
       $this->getServer()->getCommandMap()->register("maintenace", new MaintenaceCommand($this));
+  }
 	
   public function onLoad(): void{
       $this->getLogger()->info("§6Loading LDFx");
