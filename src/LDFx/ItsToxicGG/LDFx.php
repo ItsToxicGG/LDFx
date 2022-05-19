@@ -105,17 +105,6 @@ class LDFx extends PluginBase implements Listener
   public function onLoad(): void{
       $this->getLogger()->info("§6Loading LDFx");
       $this->reloadConfig();
-      $this->saveResource("config.yml");
-      $config = $this->getConfig();
-      $log = $this->getLogger();
-      $version = "2.0.0";
-      if ($config->get("config-version") == $version){
-           return;
-      } else {
-          $log->notice("Your LDFx config is outdated!");
-          $log->info("Your old config.yml was renamed to old-config.yml!");
-          @rename($this->getDataFolder(). 'config.yml', 'old-config.yml');
-          $this->saveResource("config.yml");
   }
   
   public function onDiable(): void{
@@ -423,10 +412,20 @@ class LDFx extends PluginBase implements Listener
         $player->getArmorInventory()->clearAll();
   }
 	
-  public function onEntityDamageEventByEntity(EntityDamageByEntityEvent $event): void{
+  public function CustomKnockBack(EntityDamageByEntityEvent $event): void{
 	$damager = $event->getDamager();
 	if(!$event instanceof EntityDamageByChildEntityEvent and $damager instanceof Living and $damager->isSprinting()){
+	     if($this->getConfig()->get("KnockBack-Type") === "Custom"){		
 		$event->setKnockback($this->config->get("KnockBack")*$event->getKnockback());
+		$damager->setSprinting(false);
+	}
+  }
+	
+  public function VanillaKnockBack(EntityDamageByEntityEvent $event): void{
+        $damager = $event->getDamager();
+	if(!$event instanceof EntityDamageByChildEntityEvent and $damager instanceof Living and $damager->isSprinting()){
+	     if($this->getConfig()->get("KnockBack-Type") === "Vanilla"){		
+		$event->setKnockback(1.5*$event->getKnockback());
 		$damager->setSprinting(false);
 	}
   }
