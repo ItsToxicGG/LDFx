@@ -418,6 +418,7 @@ class LDFx extends PluginBase implements Listener
 	     if($this->getConfig()->get("KnockBack-Type") === "Custom"){		
 		$event->setKnockback($this->config->get("KnockBack")*$event->getKnockback());
 		$damager->setSprinting(false);
+	     }
 	}
   }
 	
@@ -427,6 +428,7 @@ class LDFx extends PluginBase implements Listener
 	     if($this->getConfig()->get("KnockBack-Type") === "Vanilla"){		
 		$event->setKnockback(1.5*$event->getKnockback());
 		$damager->setSprinting(false);
+	     }
 	}
   }
 
