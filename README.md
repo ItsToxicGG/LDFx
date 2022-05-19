@@ -20,7 +20,7 @@ As it everything on the todo list that is ticked is working!
 - [X] Permissions Support
 - [X] FormAPI Support
 - [X] Pay-Pal Link
-- [X] CustomKnockBack
+- [X] CustomKnockBack & VanillaKnockBack
 - [X] LobbyCore (Credits to A person who made this plugin orignally in pm3 i switched it to pm4:D)
 - [X] BetterBow (like hypixel)
 - [X] AntiVoid
