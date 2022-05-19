@@ -69,6 +69,10 @@ nocraft: true
 cancel-msg: "§cYou Can Not Craft Items!"
 # EndOfNoCraft-Config
 # KnockBack-Config
+
+# KnockBack-Type can be Vanilla or Custom! 
+KnockBack-Type: "Vanilla"
+# If KnockBack-Type is set to Custom you may pick the knockback here
 Knockback: 1.9
 # EndOfKnockBack-Config
 # NoSleep-Config-true
