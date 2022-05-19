@@ -78,9 +78,6 @@ class LDFx extends PluginBase implements Listener
   private $useDefaultWorld = false; 
  
   public function onEnable(): void{
-      $config = $this->getConfig(); 
-      $maxDistance = $this->getConfig()->get("max-distance");
-      $toggle = $this->getConfig()->get("enabled");
       $this->getLogger()->info("§aEnabled LDFx");
       $this->getServer()->getPluginManager()->registerEvents($this, $this); 
       $this->BetterPearl();
