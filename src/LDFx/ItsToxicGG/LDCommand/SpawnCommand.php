@@ -7,6 +7,7 @@ namespace LDFx\ItsToxicGG\LDCommands;
 
 use pocketmine\Server;
 use pocketmine\player\Player;
+use pocketmine\plugin\Plugin;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
@@ -19,7 +20,9 @@ class SpawnCommand extends Command implements PluginOwned{
     
     private $plugin;
 
-    public function __construct() {
+    public function __construct(LDFx $plugin){
+        $this->plugin = $plugin; 
+        
         parent::__construct("spawn", 'Teleport you to the server spawn!', null, ["hub", "lobby"]);
         $this->setAliases(["hub", "lobby"]);
     }
