@@ -32,14 +32,9 @@ class SpawnCommand extends Command implements PluginOwned {
                 $sender->sendMessage("Use this command in-game");
             }
         }
-        return true;
-    }
-    
-    public function getPlugin(): Plugin{
-        return $this->plugin;
     }
 
     public function getOwningPlugin(): LDFx{
         return $this->plugin;
     }
-  }
+ }
