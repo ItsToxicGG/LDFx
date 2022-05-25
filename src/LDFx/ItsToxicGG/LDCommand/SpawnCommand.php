@@ -34,5 +34,3 @@ class SpawnCommand extends Command implements PluginOwned{
                 $sender->sendMessage("Use this command in-game");
             }
         }
-    }
-}
