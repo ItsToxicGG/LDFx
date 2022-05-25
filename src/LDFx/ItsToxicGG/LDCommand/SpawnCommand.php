@@ -1,23 +1,17 @@
 <?php
-
 declare(strict_types=1);
-
-
 namespace LDFx\ItsToxicGG\LDCommands;
-
 use pocketmine\Server;
 use pocketmine\player\Player;
-use pocketmine\plugin\Plugin;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 
-use pocketmine\plugin\PluginOwned;
-
 use LDFx\ItsToxicGG\LDFx;
 
+class SpawnCommand extends Command implements PluginOwned{
 class SpawnCommand extends Command implements PluginOwned {
-    
+
     private $plugin;
 
     public function __construct(LDFx $plugin){
@@ -26,7 +20,6 @@ class SpawnCommand extends Command implements PluginOwned {
         parent::__construct("spawn", 'Teleport you to the server spawn!', null, ["hub", "lobby"]);
         $this->setAliases(["hub", "lobby"]);
     }
-
     public function execute(CommandSender $sender, string $commandLabel, array $args): void {
         if ($sender instanceof Player) {
             $sender->teleport(Server::getInstance()->getWorldManager()->getDefaultWorld()->getSafeSpawn());
@@ -35,4 +28,3 @@ class SpawnCommand extends Command implements PluginOwned {
             }
         }
     }
- }
