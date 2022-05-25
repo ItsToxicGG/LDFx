@@ -190,14 +190,14 @@ class LDFx extends PluginBase implements Listener
             
               case false:
                   $player->setFlying(false);
-                  $player->setAllowFlight(true);
+                  $player->setAllowFlight(false);
                   $player->sendMessage("§cFly Is Disabled");
               break;
            }
       });
       $form->setTitle("§aFly§cSettings");
       $form->addLabel("§fChoose if you want fly to be off or on");
-      $form->addToggle("§fFly", true);
+      $form->addToggle("§fFly", false);
       $form->sendToPlayer($player);
       return $form;
   }
