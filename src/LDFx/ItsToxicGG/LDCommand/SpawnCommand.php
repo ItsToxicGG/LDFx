@@ -8,6 +8,7 @@ use pocketmine\player\Player;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
+
 use pocketmine\plugin\PluginOwned;
 
 use LDFx\ItsToxicGG\LDFx;
@@ -30,4 +31,8 @@ class SpawnCommand extends Command implements PluginOwned {
                 $sender->sendMessage("Use this command in-game");
             }
         }
+    
+    public function getOwningPlugin(): LDFx{
+        return $this->plugin;
+    }
     }
