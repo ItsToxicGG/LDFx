@@ -1,5 +1,8 @@
 # LDFx
 LDFx is the ultimate essentials plugin for PM4!
+# Pls beaware of a plugin copying LDFx
+- PowrCore, Site: https://github.com/Faizx511x/PowrCore
+INFO: The read me looks like LDFx with showing mostly all the features from LDFx 
 # Does it work?
 As it everything on the todo & implemented list is work
 # Todo & Implemented
