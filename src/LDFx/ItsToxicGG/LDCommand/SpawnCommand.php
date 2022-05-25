@@ -5,6 +5,7 @@ namespace LDFx\ItsToxicGG\LDCommands;
 
 use pocketmine\Server;
 use pocketmine\player\Player;
+use pocketmine\plugin\Plugin;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
@@ -30,9 +31,14 @@ class SpawnCommand extends Command implements PluginOwned {
             } else {
                 $sender->sendMessage("Use this command in-game");
             }
-        return true;
         }
+        return true;
+    }
     
+    public function getPlugin(): Plugin{
+        return $this->plugin;
+    }
+
     public function getOwningPlugin(): LDFx{
         return $this->plugin;
     }
