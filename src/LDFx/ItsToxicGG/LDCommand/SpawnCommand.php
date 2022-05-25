@@ -16,7 +16,7 @@ use pocketmine\plugin\PluginOwned;
 
 use LDFx\ItsToxicGG\LDFx;
 
-class SpawnCommand extends Command implements PluginOwned{
+class SpawnCommand extends Command implements PluginOwned {
     
     private $plugin;
 
