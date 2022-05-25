@@ -1,15 +1,18 @@
 <?php
 declare(strict_types=1);
+
 namespace LDFx\ItsToxicGG\LDCommands;
+
 use pocketmine\Server;
 use pocketmine\player\Player;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
+use pocketmine\plugin\PluginOwned;
 
 use LDFx\ItsToxicGG\LDFx;
 
-class SpawnCommand extends Command implements PluginOwned{
+
 class SpawnCommand extends Command implements PluginOwned {
 
     private $plugin;
