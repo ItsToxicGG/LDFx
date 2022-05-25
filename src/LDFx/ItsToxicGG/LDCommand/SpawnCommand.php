@@ -35,8 +35,4 @@ class SpawnCommand extends Command implements PluginOwned {
             }
         }
     }
-
-    public function getOwningPlugin(): LDFx{
-        return $this->plugin;
-    }
-  }
+ }
