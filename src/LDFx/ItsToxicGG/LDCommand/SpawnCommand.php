@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace LDFx\ItsToxicGG\LDCommands;
+namespace LDFx\ItsToxicGG\LDCommand;
 
 use pocketmine\Server;
 use pocketmine\player\Player;
