@@ -7,7 +7,6 @@ namespace LDFx\ItsToxicGG\LDCommands;
 
 use pocketmine\Server;
 use pocketmine\player\Player;
-use pocketmine\plugin\Plugin;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
