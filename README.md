@@ -2,7 +2,7 @@
 LDFx is the ultimate essentials plugin for PM4!
 LDFx is Also Known as a Core Because theres alot of Features!
 # Status
-- **In-Beta**
+- **Official-Release**
 # Does it work?
 As it everything on the todo list that is ticked is working!
 # Permissions
