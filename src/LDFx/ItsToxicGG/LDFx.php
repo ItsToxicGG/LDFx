@@ -10,6 +10,7 @@ use LDFx\ItsToxicGG\LDCommand\GUICommand;
 use LDFx\ItsToxicGG\LDCommand\SocialMenuCommand;
 use LDFx\ItsToxicGG\LDCommand\MaintenaceCommand;
 use LDFx\ItsToxicGG\LDCommand\HubCommand;
+use LDFx\ItsToxicGG\LDCommand\ClearCommand;
 use LDFx\ItsToxicGG\LDTask\HAlwaysDayTask;
 use LDFx\ItsToxicGG\LDEvent\EventListener;
 use LDFx\ItsToxicGG\LDUtils\PluginUtils;
@@ -98,7 +99,8 @@ class LDFx extends PluginBase implements Listener
       $this->getServer()->getCommandMap()->register("games", new GUICommand($this));
       $this->getServer()->getCommandMap()->register("socialmenu", new SocialMenuCommand($this));
       $this->getServer()->getCommandMap()->register("maintenace", new MaintenaceCommand($this));
-      $this->getServer()->getCommandMap()->register("hub", new HubCommand($this));     
+      $this->getServer()->getCommandMap()->register("hub", new HubCommand($this));  
+      $this->getServer()->getCommandMap()->register("clearinv", new ClearCommand($this));  
   }
 	
   public function onLoad(): void{
@@ -217,38 +219,38 @@ class LDFx extends PluginBase implements Listener
 				      break;
 
 				      case 1:
-					        $player->setDisplayName("§c" . $player->getName() . "§f");
-					        $player->setNameTag("§c" . $player->getName() . "§f");
+					        $player->setDisplayName("§c" . $player->getName() . "§c");
+					        $player->setNameTag("§c" . $player->getName() . "§c");
 					        $player->sendMessage("§aYour nickname color has been changed to §cRed!");
 				      break;
 
 				      case 2:
-					        $player->setDisplayName("§b" . $player->getName() . "§f");
-					        $player->setNameTag("§b" . $player->getName() . "§f");
+					        $player->setDisplayName("§b" . $player->getName() . "§b");
+					        $player->setNameTag("§b" . $player->getName() . "§b");
 					        $player->sendMessage("§aYour nickname color has been changed to §bBlue!");
 				      break;
 
 				      case 3:
-					        $player->setDisplayName("§e" . $player->getName() . "§f");
-					        $player->setNameTag("§e" . $player->getName() . "§f");
+					        $player->setDisplayName("§e" . $player->getName() . "§e");
+					        $player->setNameTag("§e" . $player->getName() . "§e");
 					        $player->sendMessage("§aYour nickname color has been changed to §eYellow!");
 				      break;
 
 				      case 4:
-					        $player->setDisplayName("§6" . $player->getName() . "§f");
-					        $player->setNameTag("§6" . $player->getName() . "§f");
+					        $player->setDisplayName("§6" . $player->getName() . "§6");
+					        $player->setNameTag("§6" . $player->getName() . "§6");
 					        $player->sendMessage("§aYour nickname color has been changed to §6Orange!");
 				      break;
 
 				      case 5:
-					        $player->setDisplayName("§d" . $player->getName() . "§f");
-					         $player->setNameTag("§d" . $player->getName() . "§f");
+					        $player->setDisplayName("§d" . $player->getName() . "§d");
+					         $player->setNameTag("§d" . $player->getName() . "§d");
 					         $player->sendMessage("§aYour nickname color has been changed to §dPurple!");
 				      break;
            
               case 6:
-					         $player->setDisplayName("§0" . $player->getName() . "§f");
-					         $player->setNameTag("§0" . $player->getName() . "§f");
+					         $player->setDisplayName("§0" . $player->getName() . "§0");
+					         $player->setNameTag("§0" . $player->getName() . "§0");
 					         $player->sendMessage("§aYour nickname color has been changed to §0Black!");
               break;
 			      }
