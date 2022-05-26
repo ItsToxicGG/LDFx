@@ -34,6 +34,7 @@ use pocketmine\event\player\PlayerExhaustEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerItemUseEvent;
 use pocketmine\event\player\PlayerLoginEvent;
+use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\player\Player;
 use pocketmine\event\inventory\CraftItemEvent;
 use pocketmine\event\EventPriority;
@@ -375,6 +376,44 @@ class LDFx extends PluginBase implements Listener
             $player->kick($this->getConfig()->get("MM_Message"), false);
         }
   }
+	
+  public function keepInventory($event) {
+	$player = $event->getPlayer();
+	$event->setKeepInventory(true);
+	$msgAfterDeath = $this->getConfig()->get("MsgAfterDeath", "You died, but your inventory is safe!");
+	match ($this->getConfig()->get("MsgType", "none")) {
+		"message" => $player->sendMessage($msgAfterDeath),
+		"title" => $player->sendTitle($msgAfterDeath),
+		"popup" => $player->sendPopup($msgAfterDeath),
+		"tip" => $player->sendTip($msgAfterDeath),
+		"actionbar" => $player->sendActionBarMessage($msgAfterDeath),
+		default => "None"
+	};
+  }
+
+  public function onPlayerDeath(PlayerDeathEvent $event) {
+	if ($this->getConfig()->get("KeepInventory", true)) {
+		$worldName = $event->getPlayer()->getWorld()->getDisplayName();
+		$worlds = $this->getConfig()->get("Worlds", []);
+		switch ($this->getConfig()->get("Mode", "all")) {
+			case "all":
+				$this->keepInventory($event);
+				break;
+			case "whitelist":
+				if (in_array($worldName, $worlds)) {
+					$this->keepInventory($event);
+				}
+				break;
+			case "blacklist":
+				if (!in_array($worldName, $worlds)) {
+					$this->keepInventory($event);
+				}
+				break;
+		}
+	} else {
+		$event->setKeepInventory(false);
+	}
+  }	
 	
   public function onClick(PlayerInteractEvent $event){
         $player = $event->getPlayer();
