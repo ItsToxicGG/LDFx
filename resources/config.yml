@@ -3,6 +3,13 @@
 # LDFxConfig V1.0
 # BY ITSTOXICGG
 # ----------
+# Word Meanings:
+# - J => Join
+# - FD => FlyDisable
+# - A => Allow
+# - Fx => (does not have a meaning)
+# - LC => LobbyCore
+# ----------
 # Fly-Config
   # The below config allows the plugin to reset flight mode when joining the server
   JFlyReset: true
@@ -14,6 +21,84 @@
   worlds:
   - "world"
 # EndOfFlyConfig
+# Ping-Config
+  tps-check: 20
+
+  #Choose the ping of when a player should be kicked, (I recommend you put it above 2000)
+  ping-kick: 2005
+
+  #Choose the kick message when a player is kicked for exceeding the ping limit
+  kick-message: "§7You were kicked, this was caused by high ping!"
+# EndOfPing-Config
+# Inventory-Config  (Credits to nhanaz-pm-pl )
+  # True = After a player dies they will keep there inventory (not recommond for a minigame server)
+  # False = After a player dies the player would loes there inventory (recommond for a minigame server)
+  keepInventory: false
+  # all : Prevents players from losing items on death in all worlds
+  # whitelist : Prevents players from losing items on death in worlds listed below
+  # blacklist : Prevents players from losing items on death in all worlds that are not listed below
+  Mode: all
+  Worlds: []
+  # Worlds: ["world1", "world2"]
+
+  # Notifications sent to players after death
+  MsgAfterDeath: "You died, but your inventory is safe!"
+
+   # none : No messages have been sent to the player
+   # message : Sends a direct chat message to a player
+   # title : Send a title text to the user's screen
+   # popup : Sends a popup message to the player
+   # tip : Sends a tip message to the player
+   # actionbar : Send a small text to the user's screen
+   MsgType: none  
+# EndOfInventory-Config
+# Bow-Config
+  enable-sound: true # Enable sound ?
+  sound-volume: 1
+  sound-pitch: 1
+  sound-name: "random.orb"
+
+  enable-message: true # Enable message ?
+  hit-message: "§c{name} §7(§aHP: §e{hp}§7)"
+ 
+  enable-popup: false  # Enable popup ?
+  hit-popup: "§c{name} §7(§aHP: §e{hp}§7)"
+
+  enable-tip: false  # Enable tip ?
+  hit-tip: "§c{name} §7(§aHP: §e{hp}§7)"
+# EndOfBow-Config
+# AntiVoid-Config
+  enabled-worlds: []
+
+  disabled-worlds: []
+
+  use-default-world: false
+# EndOfAntiVoid-Config
+# NoFly-Config
+ANoFly: True
+ASpectator: True
+NoFly-Kick-Message: "You Have been kicked, Reason: Fly Hacks"
+# EnderPearlCoolDown-Config
+cooldown: 5
+message: "you must wait {cooldown}s to use an enderpearl again!"
+# EndOfEnderPearlCoolDown-Config
+# Maintenace-Config
+MM-Active: false
+MM-Message: "§cThis Server is Currently in Maintenace, Try Again Later!"
+# EndOfMaintenace-Config
+# NoCraft-Config
+nocraft: true
+cancel-msg: "§cYou Can Not Craft Items!"
+# EndOfNoCraft-Config
+# KnockBack-Config
+
+# KnockBack-Type can be Vanilla or Custom! 
+KnockBack-Type: "Vanilla"
+# If KnockBack-Type is set to Custom you may pick the knockback here
+Knockback: 1.9
+# EndOfKnockBack-Config
+# NoSleep-Config-true
+NSleepMessage: "§cYou Can Not Sleep!"
 # LobbyCore-Config
   #Items 1 | Compass
   item1-name: "§r§cReport Player" # Name Items
@@ -26,6 +111,12 @@
   #Items 4 | Enchanted Book
   item3-name: "§r§dSocial Menu §7[Use]" # Name Items
   item3-cmd: "socialmenu" # Your Commands
+# Else:
+ LC-MW: true
+ 
+ LC-Worlds:
+ - "world"
+ - "lobby"
 # EndOfLobbyCore-Config
 # GameUI-Config
   #GameUI-1
