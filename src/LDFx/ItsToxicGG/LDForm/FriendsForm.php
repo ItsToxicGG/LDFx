@@ -6,7 +6,7 @@ use pocketmine\player\Player;
 use pocketmine\Server;
 use Vecnavium\FormsUI\SimpleForm;
 use Vecnavium\FormsUI\CustomForm;
-use LDFx\ItsToxicGG\FormManager;
+use LDFx\ItsToxicGG\FriendManager;
 
 class FriendsForm{
 
