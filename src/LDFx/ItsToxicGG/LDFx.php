@@ -11,6 +11,7 @@ use LDFx\ItsToxicGG\LDCommand\SocialMenuCommand;
 use LDFx\ItsToxicGG\LDCommand\MaintenaceCommand;
 use LDFx\ItsToxicGG\LDCommand\HubCommand;
 use LDFx\ItsToxicGG\LDCommand\ClearCommand;
+use LDFx\ItsToxicGG\LDCommand\FriendCommand;
 use LDFx\ItsToxicGG\LDTask\HAlwaysDayTask;
 use LDFx\ItsToxicGG\LDEvent\EventListener;
 use LDFx\ItsToxicGG\LDUtils\PluginUtils;
@@ -63,6 +64,7 @@ use Vecnavium\FormsUI\SimpleForm;
 
 class LDFx extends PluginBase implements Listener
 {
+  public static $instance;	
 	
   public int $cooldown;
   public string $message;
@@ -78,7 +80,12 @@ class LDFx extends PluginBase implements Listener
   private $disabledWorlds = [];
 
   /** @var bool */
-  private $useDefaultWorld = false; 	
+  private $useDefaultWorld = false; 
+	
+  public static function getInstance(){
+       return self::$instance;
+  }	
+
  
   public function onEnable(): void{
       $this->getLogger()->info("§aEnabled LDFx");
@@ -102,9 +109,11 @@ class LDFx extends PluginBase implements Listener
       $this->getServer()->getCommandMap()->register("maintenace", new MaintenaceCommand($this));
       $this->getServer()->getCommandMap()->register("hub", new HubCommand($this));  
       $this->getServer()->getCommandMap()->register("clearinv", new ClearCommand($this));  
+      $this->getServer()->getCommandMap()->register("friend", new FriendCommand($this));	  
   }
 	
   public function onLoad(): void{
+      self::$instance = $this;
       $this->getLogger()->info("§6Loading LDFx");
       $this->reloadConfig();
   }
@@ -429,6 +438,34 @@ class LDFx extends PluginBase implements Listener
             $this->getServer()->getCommandMap()->dispatch($player, $this->getConfig()->get("item3-cmd"));
         }
  }
+	
+ public function onFriendJoin(PlayerJoinEvent $event){
+        $playername = $event->getPlayer()->getName();
+        if($this->getDatabase()->query("SELECT * FROM friend WHERE playername='$playername'")->fetch_row() == null){
+            $array = [];
+            $array = base64_encode(serialize($array));
+            $this->getDatabase()->query("INSERT INTO friend VALUES(null, '$playername', '$array')");
+        } else {
+            $manager = new FriendManager();
+            $array = $manager->getArrayFriend($event->getPlayer());
+            foreach ($array as $p){
+                $player = Server::getInstance()->getPlayerExact($p);
+                if($player->isOnline()){
+                    $player->sendMessage("FRIEND > {$event->getPlayer()->getName()} Join the server");
+                }
+            }
+        }
+ }	
+	
+ public function initfrienddb(){
+     $this->getDatabase()->query("CREATE TABLE IF NOT EXISTS friend (id INT PRIMARY KEY AUTO_INCREMENT, playername VARCHAR(255) NOT NULL, friends VARCHAR(255) NOT NULL);");
+     $this->getDatabase()->query("CREATE TABLE IF NOT EXISTS request (id INT PRIMARY KEY AUTO_INCREMENT, player1name VARCHAR(255) NOT NULL, player2name VARCHAR(255) NOT NULL);");
+ }
+
+ public function getDatabase()
+ {
+    return new \mysqli($this->config->get("host"), $this->config->get("user"), $this->config->get("password"), $this->config->get("db-name"));
+ }	
 
  public function onInventory(InventoryTransactionEvent $event){
       $event->cancel();

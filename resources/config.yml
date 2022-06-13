@@ -9,7 +9,13 @@
 # - A => Allow
 # - Fx => (does not have a meaning)
 # - LC => LobbyCore
+# - DB => Database
 # ----------
+# MySql Setup
+  host: "Localhost"
+  user: " "
+  password: " "
+  db-name: "LDFx-DataBase"
 # Fly-Config
   # The below config allows the plugin to reset flight mode when joining the server
   JFlyReset: true
