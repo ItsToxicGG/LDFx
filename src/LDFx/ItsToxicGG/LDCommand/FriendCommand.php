@@ -8,9 +8,13 @@ use pocketmine\player\Player;
 use LDFx\ItsToxicGG\LDForm\FriendsForm;
 
 class FriendCommand extends Command{
+    
+    public $plugin;
 
-    public function __construct()
+    public function __construct(FriendsForm $plugin)
     {
+        $this->plugin = $plugin;
+        
         parent::__construct("friend", "§r§fOpen Up Friends Form, Plugin By ItsToxicGG", "§cUse: /friends", ["friends"]);
         $this->setAliases(["friend", "f"]);
     }
@@ -18,7 +22,7 @@ class FriendCommand extends Command{
     public function execute(CommandSender $sender, string $commandLabel, array $args)
     {
        if($sender instanceof Player){
-           new FriendsForm($sender);
+           $this->plugin->friendform($sender);
        } else {
            $sender->sendMessage("You not a player");
        }
