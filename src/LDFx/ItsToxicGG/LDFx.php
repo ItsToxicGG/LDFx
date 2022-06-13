@@ -113,7 +113,7 @@ class LDFx extends PluginBase implements Listener
   }
 	
   public function onLoad(): void{
-      return self::$instance;
+      self::$instance = $this;
       $this->getLogger()->info("§6Loading LDFx");
       $this->reloadConfig();
   }
