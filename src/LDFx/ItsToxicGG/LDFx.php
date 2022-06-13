@@ -63,8 +63,6 @@ use Vecnavium\FormsUI\SimpleForm;
 
 class LDFx extends PluginBase implements Listener
 {
-
-  public static $instance;	
 	
   public int $cooldown;
   public string $message;
@@ -80,11 +78,7 @@ class LDFx extends PluginBase implements Listener
   private $disabledWorlds = [];
 
   /** @var bool */
-  private $useDefaultWorld = false; 
-	
-  public static function getInstance(){
-      return self::$instance;
-  }	
+  private $useDefaultWorld = false; 	
  
   public function onEnable(): void{
       $this->getLogger()->info("§aEnabled LDFx");
@@ -111,7 +105,6 @@ class LDFx extends PluginBase implements Listener
   }
 	
   public function onLoad(): void{
-      self::$instance = $this;	  
       $this->getLogger()->info("§6Loading LDFx");
       $this->reloadConfig();
   }
@@ -352,24 +345,7 @@ class LDFx extends PluginBase implements Listener
 	}elseif($this->getConfig()->get("FLY-MW") === "off") return true;
 	return true;
   }
-	
-  public function onFriendJoin(PlayerJoinEvent $event){
-        $playername = $event->getPlayer()->getName();
-        if(Friend::getInstance()->getDatabase()->query("SELECT * FROM friend WHERE playername='$playername'")->fetch_row() == null){
-            $array = [];
-            $array = base64_encode(serialize($array));
-            Friend::getInstance()->getDatabase()->query("INSERT INTO friend VALUES(null, '$playername', '$array')");
-        } else {
-            $manager = new FriendManager();
-            $array = $manager->getArrayFriend($event->getPlayer());
-            foreach ($array as $p){
-                $player = Server::getInstance()->getPlayerExact($p);
-                if($player->isOnline()){
-                    $player->sendMessage("FRIEND > {$event->getPlayer()->getName()} Join the server");
-                }
-            }
-        }
-  }	
+		
 
   public function onJoin(PlayerJoinEvent $event) : void{
 	$player = $event->getPlayer();
