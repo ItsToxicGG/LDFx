@@ -11,6 +11,7 @@ use LDFx\ItsToxicGG\LDCommand\SocialMenuCommand;
 use LDFx\ItsToxicGG\LDCommand\MaintenaceCommand;
 use LDFx\ItsToxicGG\LDCommand\HubCommand;
 use LDFx\ItsToxicGG\LDCommand\ClearCommand;
+use LDFx\ItsToxicGG\LDCommand\FriendCommand;
 use LDFx\ItsToxicGG\LDTask\HAlwaysDayTask;
 use LDFx\ItsToxicGG\LDEvent\EventListener;
 use LDFx\ItsToxicGG\LDUtils\PluginUtils;
@@ -102,6 +103,7 @@ class LDFx extends PluginBase implements Listener
       $this->getServer()->getCommandMap()->register("maintenace", new MaintenaceCommand($this));
       $this->getServer()->getCommandMap()->register("hub", new HubCommand($this));  
       $this->getServer()->getCommandMap()->register("clearinv", new ClearCommand($this));  
+      $this->getServer()->getCommandMap()->register("friend", new FriendCommand($this));	  
   }
 	
   public function onLoad(): void{
@@ -428,6 +430,16 @@ class LDFx extends PluginBase implements Listener
             $this->getServer()->getCommandMap()->dispatch($player, $this->getConfig()->get("item3-cmd"));
         }
  }
+	
+ public function initfrienddb(){
+     $this->getDatabase()->query("CREATE TABLE IF NOT EXISTS friend (id INT PRIMARY KEY AUTO_INCREMENT, playername VARCHAR(255) NOT NULL, friends VARCHAR(255) NOT NULL);");
+     $this->getDatabase()->query("CREATE TABLE IF NOT EXISTS request (id INT PRIMARY KEY AUTO_INCREMENT, player1name VARCHAR(255) NOT NULL, player2name VARCHAR(255) NOT NULL);");
+ }
+
+ public function getDatabase()
+ {
+    return new \mysqli($this->config->get("host"), $this->config->get("user"), $this->config->get("password"), $this->config->get("db-name"));
+ }	
 
  public function onInventory(InventoryTransactionEvent $event){
       $event->cancel();
