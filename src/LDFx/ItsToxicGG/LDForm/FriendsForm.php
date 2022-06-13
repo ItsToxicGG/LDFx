@@ -10,7 +10,6 @@ use LDFx\ItsToxicGG\FriendManager;
 
 class FriendsForm{
 
-    private $player;
     private $playerlist = [];
     private $request = [];
     private $player2;
