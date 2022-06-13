@@ -441,10 +441,10 @@ class LDFx extends PluginBase implements Listener
 	
  public function onFriendJoin(PlayerJoinEvent $event){
         $playername = $event->getPlayer()->getName();
-        if(Friend::getInstance()->getDatabase()->query("SELECT * FROM friend WHERE playername='$playername'")->fetch_row() == null){
+        if($this->getDatabase()->query("SELECT * FROM friend WHERE playername='$playername'")->fetch_row() == null){
             $array = [];
             $array = base64_encode(serialize($array));
-            Friend::getInstance()->getDatabase()->query("INSERT INTO friend VALUES(null, '$playername', '$array')");
+            $this->getDatabase()->query("INSERT INTO friend VALUES(null, '$playername', '$array')");
         } else {
             $manager = new FriendManager();
             $array = $manager->getArrayFriend($event->getPlayer());
