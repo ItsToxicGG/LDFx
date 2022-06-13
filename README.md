@@ -37,11 +37,10 @@ As it everything on the todo list that is ticked is working!
 - [X] NoSleep
 - [X] Sudo
 - [X] Maintenace
-- [ ] FriendSystem (2.2 release)
-- [ ] MySql Support (2.2 release)
+- [X] FriendSystem (2.2 release)
+- [X] MySql Support (2.2 release)
 - [X] BetterPearl (Credits to: ItzLucky & Sky-min:D)
 - Note : I will add much more features! 1 donation = 1 - 3 new features that will be added asking by the donation (not everything from a donater will be added!)
 # SoftDepends & Depends :
 - PartySystem (need for lobbycore) (softdepend)
 - ReportSystem (need for lobbycore) (softdepend)
-- FriendSystem (need for lobbycore) (softdepend)
