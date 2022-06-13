@@ -1,6 +1,6 @@
 <?php
 
-namespace Friend\SandhyR;
+namespace LDFx\ItsToxicGG\LDCommand;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
