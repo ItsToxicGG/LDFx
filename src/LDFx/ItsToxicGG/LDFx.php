@@ -64,6 +64,7 @@ use Vecnavium\FormsUI\SimpleForm;
 
 class LDFx extends PluginBase implements Listener
 {
+  public static $instance;	
 	
   public int $cooldown;
   public string $message;
@@ -80,6 +81,10 @@ class LDFx extends PluginBase implements Listener
 
   /** @var bool */
   private $useDefaultWorld = false; 
+	
+  public static function getInstance(){
+       return self::$instance;
+  }	
  
   public function onEnable(): void{
       $this->getLogger()->info("§aEnabled LDFx");
@@ -107,6 +112,7 @@ class LDFx extends PluginBase implements Listener
   }
 	
   public function onLoad(): void{
+      return self::$instance;
       $this->getLogger()->info("§6Loading LDFx");
       $this->reloadConfig();
   }
@@ -430,6 +436,24 @@ class LDFx extends PluginBase implements Listener
             $this->getServer()->getCommandMap()->dispatch($player, $this->getConfig()->get("item3-cmd"));
         }
  }
+	
+ public function onFriendJoin(PlayerJoinEvent $event){
+        $playername = $event->getPlayer()->getName();
+        if(Friend::getInstance()->getDatabase()->query("SELECT * FROM friend WHERE playername='$playername'")->fetch_row() == null){
+            $array = [];
+            $array = base64_encode(serialize($array));
+            Friend::getInstance()->getDatabase()->query("INSERT INTO friend VALUES(null, '$playername', '$array')");
+        } else {
+            $manager = new FriendManager();
+            $array = $manager->getArrayFriend($event->getPlayer());
+            foreach ($array as $p){
+                $player = Server::getInstance()->getPlayerExact($p);
+                if($player->isOnline()){
+                    $player->sendMessage("FRIEND > {$event->getPlayer()->getName()} Join the server");
+                }
+            }
+        }
+ }	
 	
  public function initfrienddb(){
      $this->getDatabase()->query("CREATE TABLE IF NOT EXISTS friend (id INT PRIMARY KEY AUTO_INCREMENT, playername VARCHAR(255) NOT NULL, friends VARCHAR(255) NOT NULL);");
