@@ -85,6 +85,7 @@ class LDFx extends PluginBase implements Listener
   public static function getInstance(){
        return self::$instance;
   }	
+
  
   public function onEnable(): void{
       $this->getLogger()->info("§aEnabled LDFx");
@@ -353,6 +354,7 @@ class LDFx extends PluginBase implements Listener
 	}elseif($this->getConfig()->get("FLY-MW") === "off") return true;
 	return true;
   }
+		
 
   public function onJoin(PlayerJoinEvent $event) : void{
 	$player = $event->getPlayer();

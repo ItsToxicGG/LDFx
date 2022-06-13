@@ -1,8 +1,14 @@
 # LDFx
 LDFx is the ultimate essentials plugin for PM4!
 LDFx is Also Known as a Core Because theres alot of Features!
+# Info on whats happening
+LDFx will not be updated for a long time, 3.0 will be worked on, with much better features, improvements, and much more.
+**Release Date : September - October, well yes 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7 and 2.9 will be release from june to july**
+LDFx is also saying that A New plugin will be in-development LDFx-MiniGames, This Plugin will have 5 - 7 minigames implemented, there is a private version adding 10 minigames, also another plugin will be comming soon LDFx-Levels, a Plugin that has levels, with mysql support.
+**Release date for the plugins : LDFx-MiniGames early 2023, LDFx-Levels october to decemeber**
+this is unofficial dates and every release date here can be much more early or later
 # Status
-- **In-Beta**
+- **Official-Release**
 # Does it work?
 As it everything on the todo list that is ticked is working!
 # Permissions
