@@ -12,10 +12,10 @@
 # - DB => Database
 # ----------
 # MySql Setup
-  host: "Localhost"
-  user: " "
-  password: " "
-  db-name: "LDFx-DataBase"
+  host: "127.0.0.1"
+  user: "root"
+  password: ""
+  db-name: ""
 # Fly-Config
   # The below config allows the plugin to reset flight mode when joining the server
   JFlyReset: true
