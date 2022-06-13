@@ -63,6 +63,8 @@ use Vecnavium\FormsUI\SimpleForm;
 
 class LDFx extends PluginBase implements Listener
 {
+
+  public static $instance;	
 	
   public int $cooldown;
   public string $message;
@@ -79,6 +81,10 @@ class LDFx extends PluginBase implements Listener
 
   /** @var bool */
   private $useDefaultWorld = false; 
+	
+  public static function getInstance(){
+      return self::$instance;
+  }	
  
   public function onEnable(): void{
       $this->getLogger()->info("§aEnabled LDFx");
@@ -105,6 +111,7 @@ class LDFx extends PluginBase implements Listener
   }
 	
   public function onLoad(): void{
+      self::$instance = $this;	  
       $this->getLogger()->info("§6Loading LDFx");
       $this->reloadConfig();
   }
