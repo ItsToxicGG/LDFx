@@ -7,7 +7,7 @@ use pocketmine\Server;
 use Vecnavium\FormsUI\SimpleForm;
 use Vecnavium\FormsUI\CustomForm;
 
-class FormManager{
+class FriendsForm{
 
     private $player;
     private $playerlist = [];
