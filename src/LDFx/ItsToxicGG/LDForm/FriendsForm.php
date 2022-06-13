@@ -6,6 +6,7 @@ use pocketmine\player\Player;
 use pocketmine\Server;
 use Vecnavium\FormsUI\SimpleForm;
 use Vecnavium\FormsUI\CustomForm;
+use LDFx\ItsToxicGG\FormManager;
 
 class FriendsForm{
 
@@ -16,7 +17,6 @@ class FriendsForm{
 
     public function __construct()
     {
-        $this->friendform();
     }
 
     public function friendform(Player $player)
