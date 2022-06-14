@@ -31,6 +31,7 @@ use pocketmine\event\entity\EntityDamageByChildEntityEvent;
 use pocketmine\event\Listener;
 use pocketmine\utils\TextFormat;
 use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\event\player\PlayerExhaustEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerItemUseEvent;
@@ -354,8 +355,17 @@ class LDFx extends PluginBase implements Listener
 	}elseif($this->getConfig()->get("FLY-MW") === "off") return true;
 	return true;
   }
-		
+   public function respawn(PlayerRespawnEvent $event){
+     $player = $event->getPlayer();
+     $player->setGamemode(GameMode::ADVENTURE());
+     $this->onJoin($player);
+   }
+   public function onHub(Player $player){
+     $player->setGamemode(GameMode::ADVENTURE());
 
+     $this->onJoin($player);
+   }		
+	
   public function onJoin(PlayerJoinEvent $event) : void{
 	$player = $event->getPlayer();
 	if($this->getConfig()->get("JFlyReset") === true){
@@ -365,6 +375,7 @@ class LDFx extends PluginBase implements Listener
 		if($this->getConfig()->get("LC-MW") === true){
 		     if(!in_array($player->getWorld()->getDisplayName(), $this->getConfig()->get("LC-Worlds"))){
 	                 $player->getInventory()->clearAll();
+			 $player->getArmorInventory()->clearAll();
                          $item1 = ItemFactory::getInstance()->get(450, 0, 1);
                          $item2 = ItemFactory::getInstance()->get(345, 0, 1);
                          $item3 = ItemFactory::getInstance()->get(421, 0, 1);
