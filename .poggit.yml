@@ -5,8 +5,8 @@ branches:
 projects:
   LDFx:
     path: ""
-    icon: "icon.png"
-    lint: false
+    icon: ""
+    lint: true
     libs:
       - src: Vecnavium/FormsUI/FormsUI
         version: ^1.1.2
