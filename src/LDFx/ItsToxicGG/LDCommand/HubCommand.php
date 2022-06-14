@@ -31,7 +31,7 @@ class HubCommand extends Command implements PluginOwned {
             $sender->getEffects()->clear();
             $sender->setHealth(20);
             $sender->getHungerManager()->setFood(20);
-            $this->onHub($sender);
+            $this->plugin->onHub($sender);
             } else {
                 $sender->sendMessage("Use this command in-game");
             }
