@@ -364,7 +364,25 @@ class LDFx extends PluginBase implements Listener
      $player->setGamemode(GameMode::ADVENTURE());
 
      $this->onJoin($player);
-   }		
+   }
+	
+  public function onHub(Player $player){
+       if($this->getConfig()->get("LC-MW") === true){
+           if(!in_array($player->getWorld()->getDisplayName(), $this->getConfig()->get("LC-Worlds"))){
+	                 $player->getInventory()->clearAll();
+			 $player->getArmorInventory()->clearAll();
+                         $item1 = ItemFactory::getInstance()->get(450, 0, 1);
+                         $item2 = ItemFactory::getInstance()->get(345, 0, 1);
+                         $item3 = ItemFactory::getInstance()->get(421, 0, 1);
+                         $item1->setCustomName($this->getConfig()->get("item1-name"));
+                         $item2->setCustomName($this->getConfig()->get("item2-name"));
+                         $item3->setCustomName($this->getConfig()->get("item3-name"));
+                         $player->getInventory()->setItem(0, $item1);
+                         $player->getInventory()->setItem(4, $item2);
+                         $player->getInventory()->setItem(8, $item3);
+           }
+       }
+  }
 	
   public function onJoin(PlayerJoinEvent $event) : void{
 	$player = $event->getPlayer();
