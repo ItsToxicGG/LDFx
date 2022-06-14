@@ -360,13 +360,8 @@ class LDFx extends PluginBase implements Listener
      $player->setGamemode(GameMode::ADVENTURE());
      $this->onJoin($player);
    }
-   public function onHub(Player $player){
-     $player->setGamemode(GameMode::ADVENTURE());
-
-     $this->onJoin($player);
-   }
 	
-  public function onHub(Player $player){
+   public function onHub(Player $player){
        if($this->getConfig()->get("LC-MW") === true){
            if(!in_array($player->getWorld()->getDisplayName(), $this->getConfig()->get("LC-Worlds"))){
 	                 $player->getInventory()->clearAll();
