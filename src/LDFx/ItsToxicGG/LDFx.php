@@ -355,28 +355,41 @@ class LDFx extends PluginBase implements Listener
 	}elseif($this->getConfig()->get("FLY-MW") === "off") return true;
 	return true;
   }
-   public function respawn(PlayerRespawnEvent $event){
+   public function onRespawn(PlayerRespawnEvent $event){
      $player = $event->getPlayer();
-     $player->setGamemode(GameMode::ADVENTURE());
-     $this->onJoin($player);
+     $this->onHub($player);
    }
 	
    public function onHub(Player $player){
-       if($this->getConfig()->get("LC-MW") === true){
-           if(!in_array($player->getWorld()->getDisplayName(), $this->getConfig()->get("LC-Worlds"))){
-	                 $player->getInventory()->clearAll();
-			 $player->getArmorInventory()->clearAll();
-                         $item1 = ItemFactory::getInstance()->get(450, 0, 1);
-                         $item2 = ItemFactory::getInstance()->get(345, 0, 1);
-                         $item3 = ItemFactory::getInstance()->get(421, 0, 1);
-                         $item1->setCustomName($this->getConfig()->get("item1-name"));
-                         $item2->setCustomName($this->getConfig()->get("item2-name"));
-                         $item3->setCustomName($this->getConfig()->get("item3-name"));
-                         $player->getInventory()->setItem(0, $item1);
-                         $player->getInventory()->setItem(4, $item2);
-                         $player->getInventory()->setItem(8, $item3);
-           }
-       }
+    if($this->getConfig()->get("LC-MW") === true){
+        if(!in_array($player->getWorld()->getDisplayName(), $this->getConfig()->get("LC-Worlds"))){
+            $player->setGamemode(GameMode::ADVENTURE());
+            $player->getEffects()->clear();
+            $player->setHealth(20);
+            $player->getHungerManager()->setFood(20);
+            $player->getInventory()->clearAll();
+            $player->getArmorInventory()->clearAll();
+            $item1 = ItemFactory::getInstance()->get(130, 0, 1);
+            $item2 = ItemFactory::getInstance()->get(145, 0, 1);
+            $item3 = ItemFactory::getInstance()->get(345, 0, 1);
+            $item4 = ItemFactory::getInstance()->get(433, 0, 1);
+            $item5 = ItemFactory::getInstance()->get(399, 0, 1);
+            $item5 = ItemFactory::getInstance()->get(399, 0, 1);
+            $item1->setCustomName($this->getConfig()->get("item1-name"));
+            $item2->setCustomName($this->getConfig()->get("item2-name"));
+            $item3->setCustomName($this->getConfig()->get("item3-name"));
+            $item4->setCustomName($this->getConfig()->get("item4-name"));
+            $item5->setCustomName($this->getConfig()->get("item5-name"));
+            $player->getInventory()->setItem(0, $item1);
+            $player->getInventory()->setItem(4, $item2);
+            $player->getInventory()->setItem(8, $item3);
+            $player->getInventory()->setItem(0, $item1);
+            $player->getInventory()->setItem(1, $item2);
+            $player->getInventory()->setItem(4, $item3);
+            $player->getInventory()->setItem(7, $item4);
+            $player->getInventory()->setItem(8, $item5);
+        }
+   } 
   }
 	
   public function onJoin(PlayerJoinEvent $event) : void{
