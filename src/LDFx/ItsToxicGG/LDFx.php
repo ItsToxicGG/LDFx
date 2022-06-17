@@ -59,6 +59,8 @@ use pocketmine\event\inventory\InventoryTransactionEvent;
 use pocketmine\network\mcpe\protocol\PlaySoundPacket;
 use pocketmine\event\player\PlayerBedEnterEvent;
 use pocketmine\utils\Config;
+use xenialdan\apibossbar\DiverseBossBar;
+use xenialdan\apibossbar\BossBar;
 // FORM
 use Vecnavium\FormsUI\CustomForm;
 use Vecnavium\FormsUI\SimpleForm;
@@ -66,6 +68,8 @@ use Vecnavium\FormsUI\SimpleForm;
 class LDFx extends PluginBase implements Listener
 {
   public static $instance;	
+	
+  private BossBar $bossBar;
 	
   public int $cooldown;
   public string $message;
@@ -92,6 +96,7 @@ class LDFx extends PluginBase implements Listener
       $this->getLogger()->info("§aEnabled LDFx");
       $this->getServer()->getPluginManager()->registerEvents($this, $this); 
       $this->BetterPearl();
+      $this->bossBar = new BossBar();	  
       $this->getScheduler()->scheduleRepeatingTask(new HAlwaysDayTask(), 40);
       @mkdir($this->getDataFolder());
       $this->saveDefaultConfig();
@@ -112,6 +117,7 @@ class LDFx extends PluginBase implements Listener
       $this->getServer()->getCommandMap()->register("clearinv", new ClearCommand($this));  
       $this->getServer()->getCommandMap()->register("friend", new FriendCommand($this));	  
   }
+	
 	
   public function onLoad(): void{
       self::$instance = $this;
@@ -313,6 +319,11 @@ class LDFx extends PluginBase implements Listener
        return $form;
   }
 	
+  public function quit(PlayerQuitEvent $ev){
+      $p = $ev->getPlayer();
+      $this->bossBar->removePlayer($p);
+  }	
+	
   public function SocialMenuForm($player){
        $form = new SimpleForm(function(Player $player, int $data = null){
             if($data === null){
@@ -388,6 +399,14 @@ class LDFx extends PluginBase implements Listener
             $player->getInventory()->setItem(4, $item3);
             $player->getInventory()->setItem(7, $item4);
             $player->getInventory()->setItem(8, $item5);
+            if($this->getConfig()->get("BB-MW") === true){
+		if(!in_array($player->getWorld()->getDisplayName(), $this->getConfig()->get("BB-Worlds"))){			    
+                    $this->bossBar->setPercentage($this->getConfig()->get("BossBar-Percentage") / 100);
+                    $this->bossBar->setTitle(str_replace("&", "§", $this->config->get("BossBar-Title")));
+                    $this->bossBar->setSubTitle(str_replace("&", "§", $this->config->get("BossBar-Sub-Title")));
+                    $this->bossBar->addPlayer($p);	
+		}
+	    }
         }
    } 
   }
@@ -411,6 +430,14 @@ class LDFx extends PluginBase implements Listener
                          $player->getInventory()->setItem(0, $item1);
                          $player->getInventory()->setItem(4, $item2);
                          $player->getInventory()->setItem(8, $item3);
+		         if($this->getConfig()->get("BB-MW") === true){
+		             if(!in_array($player->getWorld()->getDisplayName(), $this->getConfig()->get("BB-Worlds"))){			    
+                                 $this->bossBar->setPercentage($this->getConfig()->get("BossBar-Percentage") / 100);
+                                 $this->bossBar->setTitle(str_replace("&", "§", $this->config->get("BossBar-Title")));
+                                 $this->bossBar->setSubTitle(str_replace("&", "§", $this->config->get("BossBar-Sub-Title")));
+                                 $this->bossBar->addPlayer($p);
+			     }
+			 }
 		     }
 		}
 	}
@@ -522,9 +549,19 @@ class LDFx extends PluginBase implements Listener
 	if($entity instanceof Player) $this->clear($entity);
   }
 	
+  public function onWorldChange(EntityTeleportEvent $event): void{
+      $entity = $event->getEntity();
+      if($this->getConfig()->get("BB-Remove-MW") === true){
+	  if(!in_array($player->getWorld()->getDisplayName(), $this->getConfig()->get("BB-Remove-Worlds"))){
+             $this->bossBar->removePlayer($entity);   
+	  }
+      }
+  }
+	
   public function clear($player){
         $player->getInventory()->clearAll();
         $player->getArmorInventory()->clearAll();
+        $player->getEffects()->clear();	  
   }
 	
   public function CustomKnockBack(EntityDamageByEntityEvent $event): void{
