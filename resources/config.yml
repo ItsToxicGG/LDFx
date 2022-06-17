@@ -10,6 +10,7 @@
 # - Fx => (does not have a meaning)
 # - LC => LobbyCore
 # - DB => Database
+# - BB => BossBar
 # ----------
 # MySql Setup
   host: "127.0.0.1"
@@ -80,6 +81,17 @@
 
   use-default-world: false
 # EndOfAntiVoid-Config
+# BossBar-Config
+  BB-MW: true
+  BB-WORLDS:
+  - "world" # this is where the worlds where the bossbar will be supported
+  BossBar-Title: "" 
+  BossBar-Sub-Title: ""
+# } Else {
+  BB-REMOVE-MW: true
+  BB-Remove-Worlds:
+  - "BedWars" # This means when entering this world the bossbar will be removed
+# EndOfBossBar-Config
 # NoFly-Config
 ANoFly: True
 ASpectator: True
