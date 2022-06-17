@@ -404,7 +404,7 @@ class LDFx extends PluginBase implements Listener
                     $this->bossBar->setPercentage($this->getConfig()->get("BossBar-Percentage") / 100);
                     $this->bossBar->setTitle(str_replace("&", "§", $this->config->get("BossBar-Title")));
                     $this->bossBar->setSubTitle(str_replace("&", "§", $this->config->get("BossBar-Sub-Title")));
-                    $this->bossBar->addPlayer($p);	
+                    $this->bossBar->addPlayer($player);	
 		}
 	    }
         }
@@ -435,7 +435,7 @@ class LDFx extends PluginBase implements Listener
                                  $this->bossBar->setPercentage($this->getConfig()->get("BossBar-Percentage") / 100);
                                  $this->bossBar->setTitle(str_replace("&", "§", $this->config->get("BossBar-Title")));
                                  $this->bossBar->setSubTitle(str_replace("&", "§", $this->config->get("BossBar-Sub-Title")));
-                                 $this->bossBar->addPlayer($p);
+                                 $this->bossBar->addPlayer($player);
 			     }
 			 }
 		     }
@@ -552,7 +552,7 @@ class LDFx extends PluginBase implements Listener
   public function onWorldChange(EntityTeleportEvent $event): void{
       $entity = $event->getEntity();
       if($this->getConfig()->get("BB-Remove-MW") === true){
-	  if(!in_array($player->getWorld()->getDisplayName(), $this->getConfig()->get("BB-Remove-Worlds"))){
+	  if(!in_array($entity->getWorld()->getDisplayName(), $this->getConfig()->get("BB-Remove-Worlds"))){
              $this->bossBar->removePlayer($entity);   
 	  }
       }
