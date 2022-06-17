@@ -528,11 +528,10 @@ class LDFx extends PluginBase implements Listener
   }
 	
   public function CustomKnockBack(EntityDamageByEntityEvent $event): void{
-	$damager = $event->getDamager();
+       $damager = $event->getDamager();
 	if(!$event instanceof EntityDamageByChildEntityEvent and $damager instanceof Living and $damager->isSprinting()){
 	     if($this->getConfig()->get("KnockBack-Type") === "Custom"){		
 		$event->setKnockback($this->config->get("KnockBack")*$event->getKnockback());
-		$damager->setSprinting(false);
 	     }
 	}
   }
@@ -542,10 +541,16 @@ class LDFx extends PluginBase implements Listener
 	if(!$event instanceof EntityDamageByChildEntityEvent and $damager instanceof Living and $damager->isSprinting()){
 	     if($this->getConfig()->get("KnockBack-Type") === "Vanilla"){		
 		$event->setKnockback(1.5*$event->getKnockback());
-		$damager->setSprinting(false);
 	     }
 	}
   }
+	
+  public function onPostEntityDamageEventByEntity(EntityDamageByEntityEvent $event): void{
+		$damager = $event->getDamager();
+		if(!$event instanceof EntityDamageByChildEntityEvent and $damager instanceof Living){
+			$damager->setSprinting(false);
+		}
+	}	
 
   public function onDamage(EntityDamageEvent $event) : void{
 	$entity = $event->getEntity();
