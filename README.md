@@ -27,7 +27,7 @@ As it everything on the todo list that is ticked is working!
 - [X] FormAPI Support
 - [X] Pay-Pal Link
 - [X] CustomKnockBack & VanillaKnockBack
-- [X] LobbyCore (Credits to A person who made this plugin orignally in pm3 i switched it to pm4:D)
+- [X] LobbyCore
 - [X] BetterBow (like hypixel)
 - [X] AntiVoid
 - [X] Configurable
